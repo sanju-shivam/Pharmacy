@@ -1,0 +1,50 @@
+@import url('https://fonts.googleapis.com/css2?family=Hind+Madurai&display=swap');
+
+
+// Options
+// 
+// Quickly modify global styling by enabling or disabling optional features.
+  
+$enable-rounded:            true !default;
+$enable-shadows:            true;
+$enable-transitions:        true;
+$enable-hover-media-query:  false;
+$enable-grid-classes:       true;
+$enable-print-styles:       true;
+
+// Variables
+//
+// Colors
+
+$theme-colors: (
+  primary: #12bbad,
+  secondary: #4f70ce,
+  light: #f3f3f3,
+  dark: #151515,
+  info: #ccc,
+  success: #28a745,
+  warning: #ffc107,
+  danger: #dc3545
+);
+
+$body-bg: white;
+$body-color: #000;
+
+
+$body-color-inverse: invert($body-color) !default;
+$link-color: #00c;
+
+// Fonts
+$font-family-base: 'Hind Madurai', sans-serif;
+$headings-font-family: 'Hind Madurai', sans-serif;
+$display-font-family: 'Hind Madurai', sans-serif;
+$font-weight-normal: 200;
+$headings-font-weight: 200;
+$lead-font-size:   1.30rem;
+$spacer: 0.8rem;
+
+
+
+
+
+@import 'bootstrap-4.4.1';

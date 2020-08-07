@@ -1,0 +1,192 @@
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+.main-header {
+  z-index: 9;
+  position: sticky !important;
+  top: 0;
+}
+
+.logo-column, .profile-link {
+  max-width: 50%;
+}
+
+.profile-link {
+  right: 0;
+}
+
+/*======== Side Nav =======*/
+
+.sidenav {
+  height: 100%;
+  width: 250px;
+  position: fixed;
+  z-index: 999;
+  top: 7px;
+  left: 0;
+  bottom: 0;
+  background-color: transparent;
+  border-right: 1px solid #f1f1f1;
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 60px;
+}
+
+.sidenav a {
+  padding: 18px 8px 8px 32px;
+  border-bottom: .5px solid #f7f7f7;
+  text-decoration: none;
+  font-size: 18px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+}
+
+.sidenav .closebtn {
+  z-index: 10;
+  background-color: #fff;
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 20px;
+  margin-left: 50px;
+}
+
+.openbtn {
+  border: none;
+}
+
+.openbtn-mobile {
+  display: none;
+}
+
+.sidenav a:hover {
+  color: #000000;
+}
+
+#main {
+  margin-left: 250px;
+  transition: margin-left .5s;
+  padding: 16px;
+}
+
+.buyer-search-mobile {
+  display: none;
+}
+
+/* ======= Dropdown Button ========= */
+
+.dropbtn {
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #ffffff;
+  min-width: 250px;
+  box-shadow: 0px 8px 12px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: #818181;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {
+  background-color: #eee
+}
+
+.show {
+  display:block;
+}
+
+/* =======================*/
+
+.metrix-numbers {
+  padding: 20px;
+  margin: 0;
+}
+
+
+/* =========== Mobile Screen ============*/
+
+@media screen and (max-width: 786px) {
+
+    .sidenav {
+      height: 100%;
+      overflow-x: hidden;
+      position: fixed;
+      bottom: 0;
+      width: 0;
+      background-color: #ffffff;
+      padding-top: 15px;
+    }
+
+    .sidenav a {
+      font-size: 18px;
+    }
+
+    #main {
+      margin-left: 0px;
+      margin-right: 0px;
+      
+    }
+
+    .openbtn {
+      display: none;
+    }
+
+    .openbtn-mobile {
+      z-index: 5;
+      display: block;
+    }
+
+    .links-list {
+      margin-top: 50px;
+    }
+
+    .dashboard-heading {
+      margin: 0;
+      max-width: 30%;
+    } 
+
+    .all-buyers {
+      font-size: 15px;
+    }
+
+    .dashboard-buttons {
+      margin: 0;
+      max-width: 70%;
+    }
+
+    .conduct-sale-btn, .add-buyer-btn {
+      padding: 2px 4px;
+    }
+
+    .buyer-search {
+      display: none;
+    }
+
+    .buyer-search-mobile {
+      padding: 5px 0px;
+      display: block;
+    }
+}
