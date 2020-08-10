@@ -14,7 +14,7 @@ use App\Brand;
 use App\Imports\ProductsImport;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Validator;
-
+use App\Social;
 class ProductsController extends Controller
 {
     
@@ -48,11 +48,13 @@ class ProductsController extends Controller
             $categoryName = 'All Products';
 
         }
+        $socials = Social::all();
         
         return view('products.index')->with([
             'products' => $products, 
             'categories' => $categories,
             'categoryName' => $categoryName,
+            'socials' => $socials
             ]);
     }
 
@@ -71,11 +73,12 @@ class ProductsController extends Controller
         // $user = User::find($user_id); // NO USE 
 
         // $product->categories()->attach($categories);
-
+        $socials = Social::all();
         return view('products.create')->with([
             
             'brands' => $brands,
             'categories' => $categories,
+            'socials' => $socials
             ]);
     }
 
@@ -92,7 +95,7 @@ class ProductsController extends Controller
         // Save the product
         if($request->hasFile('image'))
         {
-            // Get the file with extension
+            //  Get the file with extension
             $file= $request->file('image');
             $filenameWithExt = $request->file('image')->getClientOriginalName();
             //Get the file name
@@ -149,10 +152,12 @@ class ProductsController extends Controller
         $categories = Category::paginate(12);
         // $brand = Brand::find('slug');
         $product = Product::where('slug', $slug)->firstOrFail();
+        $socials = Social::all();
         return view('products.show')->with([
             'product' => $product,
             // 'brand' => $brand,
             'categories' => $categories,
+            'socials' => $socials,
             ]);
     }
 
@@ -341,6 +346,8 @@ class ProductsController extends Controller
             'brands' => $brands,
         ]);   
     }
+
+
 
 
 

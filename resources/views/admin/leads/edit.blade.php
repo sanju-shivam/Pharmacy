@@ -25,9 +25,9 @@
                             {{ $lead->requirement }} - {{ $lead->created_at }}
                         </h4>
 
-                        <input type="text" name="requirement" class="form-control @error('name') is-invalid @enderror" autocomplete="off" value="{{ $lead->requirement }}" placeholder="Requirment Type Not Availabe" readonly>
+                        <input type="text" name="requirement" class="form-control @error('requirement') is-invalid @enderror" autocomplete="off" value="{{ $lead->requirement }}" placeholder="Requirment Type Not Availabe" readonly>
                         
-                        @error('name')
+                        @error('requirement')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>
@@ -57,7 +57,7 @@
                     </div>
 
                     <div class="form-group">
-                        <input type="email" name="email" class="form-control @error('email') is-invalid @enderror" autocomplete="off" {{ $lead->email }} placeholder="Email Not Availabe">
+                        <input type="email" name="email" class="form-control @error('email') is-invalid @enderror" autocomplete="off" value="{{ $lead->email }}" placeholder="Email Not Availabe">
                     
                         @error('email')
                             <span class="invalid-feedback" role="alert">
@@ -66,11 +66,22 @@
                         @enderror
                     
                     </div>
+                    <!-- WE ARE PASSING ID AS A VALUE TO STORE IN DATABASE IN STATUS COLUMN IN LEAD STATUS TABLE -->
+                    @foreach($statuses as $status )
+                        <div class="py-2">
+                            <input type="checkbox" name="stauses[]" value="{{$status->id}}" @if (in_array($status->id, $lead_status_id)) checked  @endif> {{ $status->name }}
+                        </div>
+                    @endforeach
+                    <br>
 
-                    <div class="py-2">
-                        <input type="checkbox" name="stauses[]" > {{ $statuses->name }}
-                    </div>
                     
+                        <select class="form-control" multiple size="7" name="brand[]">
+                            @foreach($brands as $brand)
+                            <option value="{{$brand->id}}" @if (in_array($brand->id, $lead_brand_id)) selected  @endif >{{$brand->name}}</option>
+                            @endforeach
+                        </select>
+                    <br><br>
+
                     <button type="submit" class="btn btn-outline-primary w-100">Submit</button>
 
                     {{ method_field('PUT')}}

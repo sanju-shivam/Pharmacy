@@ -15,14 +15,9 @@ class CreateLeadStausTable extends Migration
     {
         Schema::create('lead_status', function (Blueprint $table) {
             $table->bigIncrements('id');
-            
             $table->bigInteger('lead_id')->unsigned();
-            $table->foreign('lead_id')->references('id')->on('leads')->onDelete('cascade');
-
-            $table->bigInteger('status_id')->unsigned();
-            $table->foreign('status_id')->references('id')->on('statuses')->onDelete('cascade');
-            $table->bigInteger('brand_id')->unsigned();
-            $table->foreign('brand_id')->references('id')->on('brands')->onDelete('cascade');
+            $table->string('status_id')->nullable();
+            $table->string('brand_id')->nullable();
             $table->timestamps();
         });
     }

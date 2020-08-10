@@ -23,16 +23,11 @@
         </div>
         <div class="col-md-3 justify-content-center social-links">
             <ul class="nav d-flex justify-content-center">
-                
-                <li class="">
-                    <a href="https://facebook.in" class="btn"><i style="color: white;" class="fab fa-facebook fa-2x"></i></a>
-                </li>
-                <li class="">
-                    <a href="https://web.whatsapp.com" class="btn"><i style="color: white;" class="fab fa-whatsapp fa-2x"></i></a>
-                </li>
-                <li class="">
-                    <a href="https://www.twitter.com" class="btn"><i style="color: white;" class="fab fa-twitter fa-2x"></i></a>
-                </li>
+                @foreach ($socials as $social)
+                    <li class="" >
+                        <a href="{{ $social->link }}" class="btn"><i style="color: white;" class="{{ $social->icon }} fa-2x"></i></a>
+                    </li>
+                @endforeach
             </ul>
         </div>
     </div>

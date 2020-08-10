@@ -16,10 +16,11 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', 'PagesController@index');
 Route::get('state/{name}','PagesController@state');
-
+Route::get('/States', 'PagesController@states');
+Route::get('single_product_state/{slug}','PagesController@single_product_state_wise');
 
 Route::get('/categories', 'PagesController@category');
-Route::get('/States', 'PagesController@states');
+
 
 Route::get('/career', 'PagesController@career');
 
@@ -29,7 +30,7 @@ Route::get('/contact', 'PagesController@contact');
 
 Route::get('/faq', 'PagesController@faq');
 
-Route::get('/login', 'PagesController@login');
+Route::get('/logins', 'PagesController@login');
 
 Route::get('/termsandcondition', 'PagesController@termsandcondition');
 

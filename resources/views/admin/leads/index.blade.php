@@ -23,13 +23,13 @@
                         <th scope="col">Name</th>
                         <th scope="col">Phone</th>
                         <th scope="col">Requirement</th>
-                        <th scope="col">Status</th>
                         <th scope="col">Date-Time</th>
                         <th scope="col">Action</th>
+                        <th scope="col">Status</th>
                         </tr>
                     </thead>
                     <tbody>
-
+                        <?php $a;  ?>
                         @foreach($leads as $lead)
 
                         <tr>
@@ -37,7 +37,6 @@
                         <td >{{ $lead->name }}</td>
                         <td>{{ $lead->phone }}</td>
                         <td>{{ $lead->requirement }}</td>
-                        <td>{{ implode(', ', $lead->statuses()->get()->pluck('name')->toArray()) }}</td>
                         <td>{{ $lead->created_at }}</td>
                                 
                         <td class="d-flex justify-content-around">
@@ -46,9 +45,56 @@
                         
                             <a href="{{ route('admin.leads.edit', $lead->id) }}"><button class="btn btn-primary float-left">Edit</button></a>
                         
-                            @endcan
-                            
+                            @endcan  
                         </td>
+
+                        @foreach($lead_statuses as $lead_status)
+                                @if($lead_status->lead_id == $lead->id )
+                                       @php
+                                        if($lead_status->status_id != NULL){
+                                            $a = explode(',', $lead_status->status_id);
+                                        }
+                                        else{
+                                        $a = [NULL];
+                                        }
+                                        @endphp
+                                       
+                                            @if(in_array(1,$a) )
+                                               
+                                        @endif
+                                        @if(in_array(1,$a))
+                                            
+                                            @if(in_array(2,$a))
+                                                    @if(in_array(3,$a))
+                                                        <td>New, Approved, Uapproved</td>
+                                                        @break;
+                                                    @endif
+                                                    <td>New, Approved</td>
+                                                    @break;
+                                            @endif
+                                            @if(in_array(3,$a))
+                                                <td>New, Uapproved</td>
+                                                @break;
+                                            @endif
+                                            <td>New</td>
+                                            @break;
+                                        @endif
+
+                                        @if(in_array(2,$a) )
+                                                @if(in_array(3,$a))
+                                                <td>Approved, Uapproved</td>
+                                                    @break;
+                                                @endif
+                                            <td>Approved</td>
+                                            @break;
+                                        @endif
+                                        @if(in_array(3,$a))
+                                            <td> Uapproved</td>
+                                            @break;
+                                        @endif                 
+                                @endif
+                        @endforeach
+
                         </tr>
 
                         @endforeach

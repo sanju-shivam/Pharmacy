@@ -19,8 +19,8 @@ class Lead extends Model
     // Primary Key
     public $primaryKey = 'id';
 
-    // public function statuses()
-    // {
-    //     return $this->belongsToMany('App\Status');
-    // }
+    public function statuses()
+    {
+        return $this->belongsToMany('App\lead_status');
+    }
 }

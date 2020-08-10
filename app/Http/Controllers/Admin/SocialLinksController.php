@@ -36,7 +36,7 @@ class socialLinksController extends Controller
     {
         $socials = Social::all();
 
-        dd($social);
+        //dd($social);
 
         return view('inc.subheader')->with('socials', $socials);
     }

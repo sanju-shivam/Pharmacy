@@ -6,7 +6,8 @@ use Illuminate\Http\Request;
 use App\Lead;
 use App\Status;
 use Gate;
-
+use App\Brand;
+use App\lead_status;
 class LeadsController extends Controller
 {
 
@@ -28,7 +29,19 @@ class LeadsController extends Controller
         }
 
         $leads = Lead::orderBy('created_at', 'desc')->get();
-        return view('admin.leads.index')->with('leads', $leads);
+        $lead_statuses = lead_status::orderBy('created_at', 'desc')->get();
+        $lead_brand_id = [1,2,3];
+        // foreach($lead_statuses as $lead_status){
+        //     //echo($lead_status->status_id.'<br>');
+        //     $a = explode(',', $lead_status->status_id);
+        //     //dd($a);
+        //     if(in_array(1,$a)){
+        //         echo "new".'<br>';
+        //     }
+        // }
+        // die;
+        //dd($lead_statuses);
+        return view('admin.leads.index',compact('leads','lead_statuses','lead_brand_id'));
     }
 
     /**
@@ -68,9 +81,9 @@ class LeadsController extends Controller
             $request->session()->flash('error', 'There was an error sending request. Please try again');
         }
 
-        $status = Status::select('id')->where('name', 'New')->first();
+        // $status = Status::select('id')->where('name', 'New')->first();
 
-        $lead->statuses()->attach($status);
+        // $lead->statuses()->attach($status);
 
         return redirect()->back();
 
@@ -96,13 +109,25 @@ class LeadsController extends Controller
     public function edit($id)
     {
         $statuses = Status::all();
+        $lead_status = lead_status::where('lead_id','=',$id)->first();
+         
+        $lead_status_id = [NULL]; $lead_brand_id =[NULL];
+        if($lead_status != NULL){
+            //dd("lead_status");
+            if( $lead_status->status_id  != NULL ){
+                    $lead_status_id = explode(',', $lead_status->status_id);
+               }      
+            if( $lead_status->brand_id  != NULL ){
+                $lead_brand_id = explode(',', $lead_status->brand_id);
+            }
+        }
+        //dd($lead_status_id);
+         
         $lead = Lead::find($id);
-        
+        $brands = Brand::select('id','name')->get();
+        // dd($lead);
         // dd($statuses);
-        return view('admin.leads.edit')->with([
-            'lead' => $lead,
-            'statuses' => $statuses,
-        ]);
+        return view('admin.leads.edit',compact('lead','statuses','brands','lead_status_id','lead_brand_id'));
     }
 
     /**
@@ -114,20 +139,45 @@ class LeadsController extends Controller
      */
     public function update(Request $request, $id)
     {
+        // dd($request->all());
         $this->validate($request, [
             'name' => 'required ',
             'email' => '',
             'phone' => 'required | min:8 | max:10',
             'requirement' => ''
         ]);
+        $status_id = NULL; $brand_id = NULL;
+        if($request->stauses != NULL )
+        $status_id = implode(',',$request->stauses);
 
-        $lead = Lead::find($id);
-        $lead->statuses()->sync($request->statuses);
-        $lead->name = $request->input('name');
-        $lead->email = $request->input('email');
-        $lead->phone = $request->input('phone');
-        $lead->requirement = $request->input('requirement');
-        if($lead->save()) {
+        if($request->brand != NULL )
+        $brand_id = implode(',', $request->brand);
+        // dd($brand_id);
+        
+        $lead = Lead::find($id)->update([
+            'name' => $request->input('name'),
+            'email' => $request->input('email'),
+            'phone' => $request->input('phone'),
+            'requirement' => $request->input('requirement'),
+        ]);
+        global $a;
+        if(empty(lead_status::find($id))){
+            $a = lead_status::create([
+                'lead_id' => $id,
+                'status_id' => $status_id,
+                'brand_id' => $brand_id,
+            ]);
+        }else{
+            $a = lead_status::where('id','=',$id)->update([
+                'lead_id' => $id,
+                'status_id' => $status_id,
+                'brand_id' => $brand_id,
+            ]);
+        }
+
+
+        // $lead->statuses()->sync($request->statuses);
+        if($lead && $a) {
             $request->session()->flash('success',' Request Submitted');
         } else {
             $request->session()->flash('error', 'There was an error sending request. Please try again');
