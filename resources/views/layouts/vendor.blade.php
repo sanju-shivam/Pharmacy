@@ -108,6 +108,13 @@
                                         <a class="dropdown-item" href="/dashboard">Dashboard</a>
                                         <a class="dropdown-item" href="/dashboard/products">All Prodcuts</a>
                                         <a class="dropdown-item" href="/products/create">Add Products</a>
+                                        @if(Auth::user()->slug == "supplier-user")
+                                            <a class="dropdown-item" href="">Lead</a>
+                                        @endif
+                                        @if(Auth::user()->slug == "supplier-user")
+                                            <a class="dropdown-item" href="">Select Brands</a>
+                                        @endif
+
                                         <a class="dropdown-item" class="dropdown-item" href="{{ route('logout') }}"
                                         onclick="event.preventDefault();
                                                         document.getElementById('logout-form').submit();">
@@ -143,6 +150,15 @@
                     {{-- <a href="/dashboard/banner">All Banners</a>
                     <a href="/banners/create">Add Banners</a> --}}
                     {{-- <a href="/company/create">Profile</a> --}}
+                    @if(Auth::user()->slug == "supplier-user")
+                    <a href="{{ route('lead.Supplier') }}">Lead</a>
+                    @endif
+                    @if(Auth::user()->slug == "supplier-user")
+                        <a class="dropdown-item" href="{{ url('/select_brands') }}">Select Brands</a>
+                    @endif
+                    @if(Auth::user()->slug == "supplier-user")
+                        <a class="dropdown-item" href="{{ url('View_Selected_Brands') }}"> View Selected Brands</a>
+                    @endif
                 </div>
             </div>
 

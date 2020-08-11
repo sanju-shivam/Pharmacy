@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Brand;
+use Auth;
+use App\brand_user;
 
 class BrandsController extends Controller
 {
@@ -125,5 +127,55 @@ class BrandsController extends Controller
         $brand->delete();
 
         return redirect()->route('admin.brands.index');
+    }
+
+
+    // Supplier want to add its brand for first time view
+    public function brands_add_view_supplier()
+    {
+        $brands = Brand::select('name','id')->get();
+        return view('supplier.select_brands',compact('brands'));
+    }
+
+    // Supplier want to update or view brands
+    public function brands_view_supplier()
+    {
+        $brand_id = brand_user::select('brand_id')->where('user_id','=',Auth::user()->id)->get();
+        $brand_id =  explode(',',$brand_id[0]->brand_id);
+        // dd($brand_id,Auth::user()->id);
+        $brands = Brand::select('name','id')->get();
+        return view('supplier.view_selected_brands',compact('brands','brand_id'));
+    }
+
+    // Supplier wants to add brands to database 
+    public function brands_store_supplier(Request $request)
+    {
+        $obj = new brand_user;
+        $obj->user_id = Auth::user()->id;
+        $obj->brand_id = implode(',', $request->brand);
+        $obj->save();
+
+        if($obj){
+            return redirect('/select_brands');
+        }
+    }
+
+    // Supplier wants to update brands to database 
+    public function brands_update_supplier(Request $request)
+    {   
+
+        if(!empty($request->brand)){
+            $brand_id = implode(',', $request->brand);
+        }
+        else{
+            $brand_id = null;
+        }
+        $obj = brand_user::where('user_id','=', Auth::user()->id)->update([
+            'brand_id' => $brand_id,
+        ]);
+
+        if($obj){
+            return redirect('/View_Selected_Brands');
+        }
     }
 }

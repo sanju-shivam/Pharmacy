@@ -8,6 +8,8 @@ use App\Status;
 use Gate;
 use App\Brand;
 use App\lead_status;
+use App\brand_user;
+use Auth;
 class LeadsController extends Controller
 {
 
@@ -186,6 +188,7 @@ class LeadsController extends Controller
         return redirect()->route('admin.leads.index');
     }
 
+
     /**
      * Remove the specified resource from storage.
      *
@@ -195,5 +198,58 @@ class LeadsController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+
+
+    public function lead_supplier()
+    {
+        $brand_id = brand_user::select('brand_id')->where('user_id','=',Auth::user()->id)->get();
+        $leads = lead_status::select('lead_id','status_id','brand_id')->get();
+        global $common_brand_ids_array ;
+        global $lead_ids_to_pass;
+        $i =0;
+        foreach ($leads as $lead) {
+            $lead_status_id = explode(',', $lead->status_id);
+            if(in_array(2, $lead_status_id)){
+                // brand id in lead table only when it is approved
+                $lead_brand_id = explode(',', $lead->brand_id);
+                // supplier brand ids to be match with lead ids to notify about
+                // common ids to be shown
+                $supplier_brand_id = explode(',', $brand_id[0]->brand_id);
+
+                if(!empty($a =  array_intersect($supplier_brand_id,$lead_brand_id))){
+                    $lead_ids_to_pass[$i] =  $lead->lead_id;
+                    $common_brand_ids_array[$i] = $a;
+                    $i++;
+                }
+            }
+            else{
+                continue;
+            }
+        }
+        
+        $b =0;$d=0;
+        $result = [NULL];
+        $f= [NULL];
+        if(!empty($lead_ids_to_pass) and  !empty($common_brand_ids_array)){
+            foreach ($lead_ids_to_pass as $loop => $ids) {
+                foreach ($common_brand_ids_array as $key => $val) {
+                    if($key == $loop){
+                        $f[$b] = Lead::where('id','=',$ids)->first(['name','email','phone']);
+                        foreach ($val as $c) {
+                            $result[$b][$d] = Brand::select('name')->where('id',$c)->first()->name;
+                            $d++;
+                        }
+                        $d =0;
+                        $b++;
+                    }
+                }
+            }
+            return view('supplier.supplier_leads_view',compact('f','result'));
+        }else{
+            return view('supplier.supplier_leads_view_if_no_lead_match');
+        }
+        
     }
 }

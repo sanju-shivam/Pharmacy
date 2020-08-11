@@ -9,6 +9,7 @@ use App\Category;
 use App\Product;
 use App\Page;
 use App\Social;
+use Session;
 
 class PagesController extends Controller
 {
@@ -117,6 +118,12 @@ class PagesController extends Controller
             'categories' => $categories,
             'socials' => $socials
             ]);
+    }
+
+    public function logout()
+    {
+        Session::flush();
+        return redirect('/logins');
     }
     
 

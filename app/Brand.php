@@ -15,11 +15,11 @@ class Brand extends Model
     //Table Names
     protected $table = 'brands';
 
-    public function users(){
-        return $this->belongsToMany(User::class);
-    }
+    // public function users(){
+    //     return $this->belongsToMany(User::class);
+    // }
 
-    public function products(){
-        return $this->belongsToMany(Product::class);
-    }
+    // public function products(){
+    //     return $this->belongsToMany(Product::class);
+    // }
 }
