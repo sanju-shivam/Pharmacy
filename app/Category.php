@@ -12,10 +12,6 @@ class Category extends Model
         'slug',
     ];
 
-    // public function user(){
-    //     return $this->belogsToMany(User::class);
-    // }
-
     public function products()
     {
         return $this->belongsToMany(Product::class);

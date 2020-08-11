@@ -65,7 +65,8 @@
                                                 </button>
                                             </div>
                                             <div class="modal-body">
-                                                <h2 class="text-center">Are you sure you want to delete this blog!</h2>
+                                                <h4 class="text-center">Are you sure you want to delete!</h4>
+                                                <h3 class="text-center text-primary">{{ $brand->name }}</h3>
                                                 <div class="row d-flex justify-content-around">
                                                     <form  action="{{ route('admin.brands.destroy', $brand)}}" method="POST" class="">
                             
@@ -73,14 +74,14 @@
                                                         
                                                             {{ method_field('DELETE') }}
                                                         
-                                                            <button type="submit" class="btn btn-danger">Delete</button>
+                                                            <button type="submit" class="btn btn-danger w-100">Delete</button>
                                                     
                                                     </form>
                                                     
-                                                    <button type="button" class="btn btn-success" data-dismiss="modal">Close</button>
                                                 </div>
                                             </div>
                                             <div class="modal-footer">
+                                                <button type="button" class="btn btn-success w-100" data-dismiss="modal">Close</button>
                                             </div>
                                         </div>
                                     </div>

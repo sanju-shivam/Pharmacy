@@ -19,7 +19,6 @@ class Page extends Model
     protected $table = 'pages';
 
     // Primary Key
-    //$primaryKey = 'slug';
     public function key(){
         return 'slug';
     } 

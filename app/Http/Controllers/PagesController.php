@@ -39,10 +39,6 @@ class PagesController extends Controller
         return view('pages.about',compact('socials'));
     }
 
-    // public function cancellation() {
-    //     return view('pages.cancellation');
-    // }
-
     public function career() {
         $socials = Social::select('icon','link')->get();
         return view('pages.career',compact('socials'));
@@ -58,10 +54,6 @@ class PagesController extends Controller
         return view('pages.contact',compact('socials'));
     }
 
-    // public function disclaimer() {
-    //     return view('pages.disclaimer');
-    // }
-
     public function faq() {
         $socials = Social::select('icon','link')->get();
         return view('pages.faq',compact('socials'));
@@ -71,10 +63,6 @@ class PagesController extends Controller
         $socials = Social::select('icon','link')->get();
         return view('auth.login',compact('socials'));
     }
-
-    // public function policy() {
-    //     return view('pages.policy');
-    // }
 
     public function category() {
         $socials = Social::select('icon','link')->get();
@@ -89,11 +77,6 @@ class PagesController extends Controller
         return view('pages.states',compact('socials'));
     }
 
-
-    
-    
-
-
     public function state($name)
     {
         $socials = Social::select('icon','link')->get();
@@ -101,9 +84,6 @@ class PagesController extends Controller
         $products = Product::select('id','image','title','text','slug')->where('location','=',$name)->paginate(10);
         return view('pages.state_wise_product',compact('products','categories','name','socials'));
     }
-
-
-
 
     public function single_product_state_wise($slug)
     {
@@ -123,12 +103,7 @@ class PagesController extends Controller
     public function logout()
     {
         Session::flush();
-        return redirect('/logins');
+        return redirect('/login');
     }
-    
-
-    // public function termsandcondition() {
-    //     return view('pages.termsandcondition');
-    // }
 
 }

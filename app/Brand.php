@@ -15,6 +15,10 @@ class Brand extends Model
     //Table Names
     protected $table = 'brands';
 
+    public function brands(){
+        return $this->belongsToMany(Lead::class);
+    }
+
     // public function users(){
     //     return $this->belongsToMany(User::class);
     // }

@@ -23,9 +23,9 @@ class UsersController extends Controller
      */
     public function index()
     {
-        // if(Gate::denies('vendor-users')){
-        //     return redirect(route('dashboard.index'));
-        // }
+        if(Gate::denies('vendor-users')){
+            return redirect(route('dashboard.index'));
+        }
 
         $users = User::whereHas(
             'roles', function($q){

@@ -16,13 +16,13 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', 'PagesController@index');
 Route::get('state/{name}','PagesController@state');
-Route::get('/States', 'PagesController@states');// NEW
-Route::get('single_product_state/{slug}','PagesController@single_product_state_wise');// NEW
-Route::get('/select_brands','BrandsController@brands_add_view_supplier');// NEW
-Route::post('/save_brands','BrandsController@brands_store_supplier');// NEW
-Route::get('View_Selected_Brands','BrandsController@brands_view_supplier');// NEW
-Route::post('/Brands_Update','BrandsController@brands_update_supplier');// NEW
-Route::get('lead_supplier','LeadsController@lead_supplier')->name('lead.Supplier');
+Route::get('/states', 'PagesController@states');// NEW
+Route::get('single-product-state/{slug}','PagesController@single_product_state_wise');// NEW
+Route::get('/select-brands','BrandsController@brands_add_view_supplier');// NEW
+Route::post('/save-brands','BrandsController@brands_store_supplier');// NEW
+Route::get('/selected-brands','BrandsController@brands_view_supplier');// NEW
+Route::post('/brands-update','BrandsController@brands_update_supplier');// NEW
+Route::get('/lead-supplier','LeadsController@lead_supplier')->name('lead.Supplier');
 
 Route::get('/categories', 'PagesController@category');
 
@@ -35,7 +35,7 @@ Route::get('/contact', 'PagesController@contact');
 
 Route::get('/faq', 'PagesController@faq');
 
-Route::get('/logins', 'PagesController@login');// NEW
+Route::get('/login', 'PagesController@login');// NEW
 Route::get('/logout','PagesController@logout');// NEW
 
 Route::get('/termsandcondition', 'PagesController@termsandcondition');
@@ -64,6 +64,9 @@ Route::get('login/google/callback', 'Auth\LoginController@googleCallback')->name
 
 
 // Suppiler Dashboard
+
+Route::get('/leads', 'LeadsController@lead_supplier')->name('leads.index');
+
 Route::get('dashboard/', 'DashboardController@index')->name('dashboard');
 
 Route::get('dashboard/banner', 'DashboardController@banner')->name('dashboard.banner');

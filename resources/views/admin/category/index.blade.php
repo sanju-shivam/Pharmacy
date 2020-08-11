@@ -61,7 +61,8 @@
                                             </button>
                                         </div>
                                         <div class="modal-body">
-                                            <h2 class="text-center">Are you sure you want to delete this blog!</h2>
+                                            <h4 class="text-center">Are you sure you want to delete!</h4>
+                                            <h3 class="text-center text-primary">{{ $category->name }}</h3>
                                             <div class="row d-flex justify-content-around">
                                                 <form  action="{{ action('Admin\CategoryController@destroy', $category)}}" method="POST" class="float-left">
                                         
@@ -69,15 +70,14 @@
                                                 
                                                     {{ method_field('DELETE') }}
                                                 
-                                                    <button type="submit" class="btn btn-outline-danger">Delete</button>
+                                                    <button type="submit" class="btn btn-outline-danger w-100">Delete</button>
                                             
                                                 </form>
-
                                                 
-                                                <button type="button" class="btn btn-success" data-dismiss="modal">Close</button>
                                             </div>
                                         </div>
                                         <div class="modal-footer">
+                                            <button type="button" class="btn btn-success w-100" data-dismiss="modal">Close</button>
                                         </div>
                                     </div>
                                 </div>

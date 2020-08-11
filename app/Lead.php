@@ -23,4 +23,9 @@ class Lead extends Model
     {
         return $this->belongsToMany('App\lead_status');
     }
+
+    public function brands(){
+
+        return $this->belongsToMany(Brand::class);
+    }
 }

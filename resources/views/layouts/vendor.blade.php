@@ -50,26 +50,6 @@
             }
         }
 
-        /* When the user clicks on the button,
-        toggle between hiding and showing the dropdown content */
-        function myFunction() {
-            document.getElementById("myDropdown").classList.toggle("show");
-        }
-
-        // Close the dropdown menu if the user clicks outside of it
-        window.onclick = function(event) {
-            if (!event.target.matches('.dropbtn')) {
-                var dropdowns = document.getElementsByClassName("dropdown-content");
-                var i;
-                for (i = 0; i < dropdowns.length; i++) {
-                    var openDropdown = dropdowns[i];
-                    if (openDropdown.classList.contains('show')) {
-                        openDropdown.classList.remove('show');
-                    }
-                }
-            }
-        }
-
     </script>
 
 </head>
@@ -147,17 +127,14 @@
                     <a href="/dashboard">Dashboard</a>
                     <a href="/dashboard/products">All Prodcuts</a>
                     <a href="/products/create">Add Products</a>
-                    {{-- <a href="/dashboard/banner">All Banners</a>
-                    <a href="/banners/create">Add Banners</a> --}}
-                    {{-- <a href="/company/create">Profile</a> --}}
                     @if(Auth::user()->slug == "supplier-user")
                     <a href="{{ route('lead.Supplier') }}">Lead</a>
                     @endif
                     @if(Auth::user()->slug == "supplier-user")
-                        <a class="dropdown-item" href="{{ url('/select_brands') }}">Select Brands</a>
+                        <a class="dropdown-item" href="{{ url('/select-brands') }}">Select Brands</a>
                     @endif
                     @if(Auth::user()->slug == "supplier-user")
-                        <a class="dropdown-item" href="{{ url('View_Selected_Brands') }}"> View Selected Brands</a>
+                        <a class="dropdown-item" href="{{ url('selected-brands') }}"> View Selected Brands</a>
                     @endif
                 </div>
             </div>

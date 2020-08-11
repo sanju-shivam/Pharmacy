@@ -1,24 +1,53 @@
-@extends('layouts.dashboard')
+@extends('layouts.vendor')
 
 @section('content')
 
-<h1>Leads</h1>
 
-    @if(count($leads) > 0)
-       <div>
-            @foreach($leads as $lead)
-                <div>
-                <a href="/leads/{{ $lead->id }}"><h2>{{ $lead->name }}</h2></a>
-                <h2>{{ $lead->phone }}</h2>
-                <h2>{{ $lead->email }}</h2>
-                <h2>{{ $lead->requirement }}</h2>
-                <small>{{ $lead->created_at }}</small>
+<div id="main" class="bg-light">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="row my-4">
+                <div class="col-md-6">
+                <h4>All Leads showing new first</h4>
                 </div>
-            @endforeach
-       </div>
+                <div class="col-md-6 d-flex justify-content-around">
+                </div>
+            </div>
+            
+            <div class="bg-white shadow">
 
-    @else 
-        <p>No leads</p>
-    @endif
+                <table class="table">
+                    <thead>
+                        <tr>
+                        <th scope="col">S.No</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Phone</th>
+                        <th scope="col">Requirement</th>
+                        <th scope="col">Date-Time</th>
+                        <th scope="col">Action</th>
+                        <th scope="col">Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach($leads as $lead)
+                        <tr>
+                            <th scope="row">{{ $lead->id }}</th>
+                            <td >{{ $lead->name }}</td>
+                            <td>{{ $lead->phone }}</td>
+                            <td>{{ $lead->requirement }}</td>
+                            <td>{{ $lead->created_at }}</td>
+                        </tr>
+
+                        @endforeach
+                    
+                    </tbody>
+                </table>
+
+            </div>
+
+        </div>
+    </div>
+</div>  
+
 
 @endsection
