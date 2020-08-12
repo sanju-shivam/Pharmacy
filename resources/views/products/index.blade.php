@@ -9,7 +9,14 @@
             <!-- List of products -->
             
             <div class="row">
+
+            <div class="mx-auto">
+                <br>
+                <button class="btn btn-warning" data-toggle="modal" data-target="#exampleModal" style="color: white;">Apply Filters
+                    <i class="fa fa-caret-down"></i></button>
+            </div>
                 <div class="col-md-12 pt-5">
+
                         <div class="row">
                             <div class="col-md-3">
                                 
@@ -118,8 +125,13 @@
 
                             <!-- Card Body -->
 
+
+
                             <div class="col-md-6 mt-2">
+                                
+                                @if(empty($filter))
                                 <h4>{{ $categoryName }}</h4>
+                                @endif
 
                                 @forelse ($products as $product)
 
@@ -152,10 +164,11 @@
                                     </div>
                                     
                                 @endforelse
-
+                                    
                                     <div class=" d-flex justify-content-around">
-                                        {{ $products->appends(request()->except('page'))->links() }}
+                                        <p> {{-- $products->appends(request()->except('page'))->links() --}}<p>
                                     </div>
+                                   
                             </div>
 
                             <div class="col-md-3 border rounded ">
@@ -167,9 +180,76 @@
                         </div>
                 </div>
             </div>
-
         </div>
     </div>
+            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Filter Products</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    <form method="post" action="{{ url('filter/') }}">
+                        @csrf
+                        <table class="table table-rsponsive">
+                            <tr>
+                                <label>Category</label>
+                                <select class="form-control" name="FilterCategory">
+                                    <option value="" >--select--</option>
+                                    @foreach ($categories as $category)
+                                    <option value="{{$category->id}}" >{{ $category->name }}</option>
+                                    @endforeach
+                                </select>
+                            </tr><br>
+                            <tr>
+                                <label>State</label>
+                                <select name="state" class="form-control ">
+                                    <option value="" > --select-- </option>
+                                    <option value="andrapradesh">Andra Pradesh</option>
+                                    <option value="arunachalpradesh">Arunachal Pradesh</option>
+                                    <option value="assam">Assam</option>
+                                    <option value="bihar">Bihar</option>
+                                    <option value="chhattisgarh">Chhattisgarh</option>
+                                    <option value="chandigarh">Chandigarh</option>
+                                    <option value="delhi">Delhi</option>
+                                    <option value="goa">Goa</option>
+                                    <option value="gujarat">Gujarat</option>
+                                    <option value="haryana">Haryana</option>
+                                    <option value="himachalpradesh">Himachal Pradesh</option>
+                                    <option value="jammuandkashmir">Jammu and Kashmir</option>
+                                    <option value="jharkhand">Jharkhand</option>
+                                    <option value="karnataka">Karnataka</option>
+                                    <option value="kerala" >Kerala</option>
+                                    <option value="madhyapradesh" >Madhya Pradesh</option>
+                                    <option value="maharashtra" >Maharashtra</option>
+                                    <option value="manipur" >Manipur</option>
+                                    <option value="meghalaya" >Meghalaya</option>
+                                    <option value="mizoram" >Mizoram</option>
+                                    <option value="magaland" >Nagaland</option>
+                                    <option value="orissa" >Orissa</option>
+                                    <option value="punjab" >Punjab</option>
+                                    <option value="rajasthan" >Rajasthan</option>
+                                    <option value="sikkim" >Sikkim</option>
+                                    <option value="tamilnadu" >Tamil Nadu</option>
+                                    <option value="telagana" >Telagana</option>
+                                    <option value="tripura">Tripura</option>
+                                    <option value="uttaranchal" >Uttaranchal</option>
+                                    <option value="uttarpradesh" >Uttar Pradesh</option>
+                                    <option value="westbengal" >West Bengal</option> 
+                                </select>
+                            </tr>
+                        </table>
+                      </div>
+                      <div class="modal-footer">
+                        <input type="submit" class="btn btn-primary" name="Filterr" value="Filter">
+                      </div>
+                    </form>
+                </div>
+              </div>
+            </div>
 </main>
      
 

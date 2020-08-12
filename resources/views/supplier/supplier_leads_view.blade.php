@@ -21,6 +21,7 @@
                             </thead>
                             
                             <tbody>
+                                <?php $id=1;  ?>
                     @if(!empty($f) and !empty($result))
                             @php
                                 foreach ($f as $loop => $data) {
@@ -28,7 +29,7 @@
                                         if($key == $loop){
                             @endphp
                                         <tr>
-                                        <td>{{ $key }}</td>
+                                        <td>{{ $id++ }}</td>
                                         <td>{{ $data->name }}</td>
                                         <td>{{ $data->email }}</td>
                                         <td>{{ $data->phone }}</td>

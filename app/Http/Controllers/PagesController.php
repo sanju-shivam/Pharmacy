@@ -92,6 +92,7 @@ class PagesController extends Controller
         // $brand = Brand::find('slug');
         $socials = Social::select('icon','link')->get();
         $product = Product::where('slug', $slug)->firstOrFail();
+        //dd($product);
         return view('pages.state_wise_single_product')->with([
             'product' => $product,
             // 'brand' => $brand,

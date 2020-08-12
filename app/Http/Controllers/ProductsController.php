@@ -349,6 +349,31 @@ class ProductsController extends Controller
 
 
 
+    public function filter(Request $request)
+    {
+        //dd($request->all());
+        if(!empty($request->FilterCategory) and empty($request->state)){
+            
+            $products = Product::select('image','title','slug','text')->where('category_id','=',$request->FilterCategory)->get();
+            $categories = Category::all();
+            $socials = Social::select('links','icon');
+            return view('products.Filter_products',compact('products','categories','socials','filter'));           
+        }
+        else if(empty($request->FilterCategory) and !empty($request->state)){
+            $products = Product::select('image','title','slug','text')->where('location','=',$request->state)->get();
+            $categories = Category::all();
+            $socials = Social::select('links','icon');
+            return view('products.Filter_products',compact('products','categories','socials','filter'));
+        }
+        else{
+            $products = Product::select('image','title','slug','text')->where('location','=',$request->state)->where('category_id','=',$request->FilterCategory)->get();
+            $categories = Category::all();
+            $socials = Social::select('links','icon');
+            return view('products.Filter_products',compact('products','categories','socials','filter'));
+        }
+    }
+
+
 
 
     

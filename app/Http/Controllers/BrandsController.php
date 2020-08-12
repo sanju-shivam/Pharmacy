@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Brand;
 use Auth;
-use App\brand_user;
+use App\BrandUser;
 
 class BrandsController extends Controller
 {
@@ -140,7 +140,7 @@ class BrandsController extends Controller
     // Supplier want to update or view brands
     public function brands_view_supplier()
     {
-        $brand_id = brand_user::select('brand_id')->where('user_id','=',Auth::user()->id)->get();
+        $brand_id = BrandUser::select('brand_id')->where('user_id','=',Auth::user()->id)->get();
         $brand_id =  explode(',',$brand_id[0]->brand_id);
         // dd($brand_id,Auth::user()->id);
         $brands = Brand::select('name','id')->get();
@@ -150,32 +150,49 @@ class BrandsController extends Controller
     // Supplier wants to add brands to database 
     public function brands_store_supplier(Request $request)
     {
-        $obj = new brand_user;
-        $obj->user_id = Auth::user()->id;
-        $obj->brand_id = implode(',', $request->brand);
-        $obj->save();
+        if(BrandUser::where('user_id','=', Auth::user()->id)->first()){
+            if(!empty($request->brand)){
+                $brand_id = implode(',', $request->brand);
+            }
+            else{
+                $brand_id = null;
+            }
+            $obj = BrandUser::where('user_id','=', Auth::user()->id)->update([
+                'brand_id' => $brand_id,
+            ]);
 
-        if($obj){
-            return redirect('/select_brands');
+            if($obj){
+                return redirect('/selected_brands');
+            }
+        }
+        else{
+            $obj = new BrandUser;
+            $obj->user_id = Auth::user()->id;
+            $obj->brand_id = implode(',', $request->brand);
+            $obj->save();
+
+            if($obj){
+                return redirect('/select_brands');
+            }
         }
     }
 
     // Supplier wants to update brands to database 
-    public function brands_update_supplier(Request $request)
-    {   
+    // public function brands_update_supplier(Request $request)
+    // {   
 
-        if(!empty($request->brand)){
-            $brand_id = implode(',', $request->brand);
-        }
-        else{
-            $brand_id = null;
-        }
-        $obj = brand_user::where('user_id','=', Auth::user()->id)->update([
-            'brand_id' => $brand_id,
-        ]);
+    //     if(!empty($request->brand)){
+    //         $brand_id = implode(',', $request->brand);
+    //     }
+    //     else{
+    //         $brand_id = null;
+    //     }
+    //     $obj = BrandUser::where('user_id','=', Auth::user()->id)->update([
+    //         'brand_id' => $brand_id,
+    //     ]);
 
-        if($obj){
-            return redirect('/View_Selected_Brands');
-        }
-    }
+    //     if($obj){
+    //         return redirect('/selected_brands');
+    //     }
+    // }
 }

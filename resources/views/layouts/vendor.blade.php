@@ -127,7 +127,7 @@
                     <a href="/dashboard">Dashboard</a>
                     <a href="/dashboard/products">All Prodcuts</a>
                     <a href="/products/create">Add Products</a>
-                    @if(Auth::user()->slug == "supplier_user")
+                    @if(Auth::user()->slug == "supplier-user")
                     <a href="{{ route('lead.Supplier') }}">Lead</a>
                     @endif
                     @if(Auth::user()->slug == "supplier-user")

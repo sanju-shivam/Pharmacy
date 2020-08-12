@@ -7,8 +7,8 @@ use App\Lead;
 use App\Status;
 use Gate;
 use App\Brand;
-use App\lead_status;
-use App\brand_user;
+use App\LeadStatus;
+use App\BrandUser;
 use Auth;
 class LeadsController extends Controller
 {
@@ -31,7 +31,7 @@ class LeadsController extends Controller
         }
 
         $leads = Lead::orderBy('created_at', 'desc')->get();
-        $lead_statuses = lead_status::orderBy('created_at', 'desc')->get();
+        $lead_statuses = LeadStatus::orderBy('created_at', 'desc')->get();
         $lead_brand_id = [1,2,3];
         // foreach($lead_statuses as $lead_status){
         //     //echo($lead_status->status_id.'<br>');
@@ -111,7 +111,7 @@ class LeadsController extends Controller
     public function edit($id)
     {
         $statuses = Status::all();
-        $lead_status = lead_status::where('lead_id','=',$id)->first();
+        $lead_status = LeadStatus::where('lead_id','=',$id)->first();
          
         $lead_status_id = [NULL]; $lead_brand_id =[NULL];
         if($lead_status != NULL){
@@ -163,14 +163,14 @@ class LeadsController extends Controller
             'requirement' => $request->input('requirement'),
         ]);
         global $a;
-        if(empty(lead_status::find($id))){
-            $a = lead_status::create([
+        if(empty(LeadStatus::find($id))){
+            $a = LeadStatus::create([
                 'lead_id' => $id,
                 'status_id' => $status_id,
                 'brand_id' => $brand_id,
             ]);
         }else{
-            $a = lead_status::where('id','=',$id)->update([
+            $a = LeadStatus::where('id','=',$id)->update([
                 'lead_id' => $id,
                 'status_id' => $status_id,
                 'brand_id' => $brand_id,
@@ -204,8 +204,8 @@ class LeadsController extends Controller
 
     public function lead_supplier()
     {
-        $brand_id = brand_user::select('brand_id')->where('user_id','=',Auth::user()->id)->get();
-        $leads = lead_status::select('lead_id','status_id','brand_id')->get();
+        $brand_id = BrandUser::select('brand_id')->where('user_id','=',Auth::user()->id)->get();
+        $leads = LeadStatus::select('lead_id','status_id','brand_id')->get();
         global $common_brand_ids_array ;
         global $lead_ids_to_pass;
         $i =0;

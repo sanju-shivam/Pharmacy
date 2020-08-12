@@ -14,7 +14,7 @@
             
             <div class="bg-white shadow p-5">
 
-                <form role="form" method="POST" action="{{ url('/Brands_Update') }}">
+                <form role="form" method="POST" action="{{ url('/save_brands') }}">
 
                     @csrf                    
                         <select class="form-control" multiple size="7" name="brand[]">

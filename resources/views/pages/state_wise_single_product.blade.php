@@ -46,66 +46,66 @@
                                         <ul class="list-group list-group-flush navbar-nav" id="collapseCategory">
 
                                             <li class="list-group-item nav-item">
-                                                <a href="{{url('state/AndraPradesh')}}" class="text-decoration-none text-dark">
+                                                <a href="{{url('state/andrapradesh')}}" class="text-decoration-none text-dark">
                                                     <i class="fas fa-angle-double-right text-primary mr-2"></i>Andra Pradesh
                                                 </a>
                                             </li>
                                             <li class="list-group-item nav-item">
-                                                <a href="{{url('state/ArunachalPradesh')}}" class="text-decoration-none text-dark">
+                                                <a href="{{url('state/arunachalpradesh')}}" class="text-decoration-none text-dark">
                                                     <i class="fas fa-angle-double-right text-primary mr-2"></i>Arunachal Pradesh
                                                 </a>
                                             </li>
                                             <li class="list-group-item nav-item">
-                                                <a href="{{url('state/Assam')}}" class="text-decoration-none text-dark">
+                                                <a href="{{url('state/assam')}}" class="text-decoration-none text-dark">
                                                     <i class="fas fa-angle-double-right text-primary mr-2"></i>Assam
                                                 </a>
                                             </li>
                                             <li class="list-group-item nav-item">
-                                                <a href="{{url('state/Bihar')}}" class="text-decoration-none text-dark">
+                                                <a href="{{url('state/bihar')}}" class="text-decoration-none text-dark">
                                                     <i class="fas fa-angle-double-right text-primary mr-2"></i>Bihar
                                                 </a>
                                             </li>
                                             <li class="list-group-item nav-item">
-                                                <a href="{{url('state/Chhattisgarh')}}" class="text-decoration-none text-dark">
+                                                <a href="{{url('state/chhattisgarh')}}" class="text-decoration-none text-dark">
                                                     <i class="fas fa-angle-double-right text-primary mr-2"></i>Chhattisgarh
                                                 </a>
                                             </li>
                                             <li class="list-group-item nav-item">
-                                                <a href="{{url('state/Delhi')}}" class="text-decoration-none text-dark">
+                                                <a href="{{url('state/delhi')}}" class="text-decoration-none text-dark">
                                                     <i class="fas fa-angle-double-right text-primary mr-2"></i>Delhi
                                                 </a>
                                             </li>
                                             <li class="list-group-item nav-item">
-                                                <a href="{{url('state/Goa')}}" class="text-decoration-none text-dark">
+                                                <a href="{{url('state/goa')}}" class="text-decoration-none text-dark">
                                                     <i class="fas fa-angle-double-right text-primary mr-2"></i>Goa
                                                 </a>
                                             </li>
                                             <li class="list-group-item nav-item">
-                                                <a href="{{url('state/Gujarat')}}" class="text-decoration-none text-dark">
+                                                <a href="{{url('state/gujarat')}}" class="text-decoration-none text-dark">
                                                     <i class="fas fa-angle-double-right text-primary mr-2"></i>Gujarat
                                                 </a>
                                             </li>
                                             <li class="list-group-item nav-item">
-                                                <a href="{{url('state/Haryana')}}" class="text-decoration-none text-dark">
+                                                <a href="{{url('state/haryana')}}" class="text-decoration-none text-dark">
                                                     <i class="fas fa-angle-double-right text-primary mr-2"></i>Haryana
                                                 </a>
                                             </li>
                                             <li class="list-group-item nav-item">
-                                                <a href="{{url('state/HimachalPradesh')}}" class="text-decoration-none text-dark">
+                                                <a href="{{url('state/himachalpradesh')}}" class="text-decoration-none text-dark">
                                                     <i class="fas fa-angle-double-right text-primary mr-2"></i>Himachal Pradesh
                                                 </a>
                                             </li>
                                             <li class="list-group-item nav-item">
-                                                <a href="{{url('state/JammuandKashmir')}}" class="text-decoration-none text-dark">
+                                                <a href="{{url('state/jammuandkashmir')}}" class="text-decoration-none text-dark">
                                                     <i class="fas fa-angle-double-right text-primary mr-2"></i>Jammu and Kashmir
                                                 </a>
                                             </li>
                                             <li class="list-group-item nav-item">
-                                                <a href="{{url('state/Jharkhand')}}" class="text-decoration-none text-dark">
+                                                <a href="{{url('state/jharkhand')}}" class="text-decoration-none text-dark">
                                                     <i class="fas fa-angle-double-right text-primary mr-2"></i>Jharkhand
                                                 </a>
                                             </li>
-                                             <a class="btn w-100 btn-success" href="/States">View All</a>
+                                             <a class="btn w-100 btn-success" href="/states">View All</a>
                                         </ul>
                                     </div>
                                 </div>
