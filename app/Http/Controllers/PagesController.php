@@ -103,7 +103,7 @@ class PagesController extends Controller
     public function logout()
     {
         Session::flush();
-        return redirect('/login');
+        return redirect('/logins');
     }
 
 }
