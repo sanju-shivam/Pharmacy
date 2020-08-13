@@ -52,6 +52,7 @@ class DashboardController extends Controller
         $user_id = auth()->user()->name;
         $user = User::find($user_id);
         $products = Product::select('id','image','title','location')->get();
+        //dd($products[0]->location);
 
         return View("dashboard.products")->with(["user" => $user, "products" => $products]);
     }

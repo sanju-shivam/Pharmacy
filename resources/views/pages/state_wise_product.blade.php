@@ -134,7 +134,7 @@
                                                 <div class="card-body">
                                                     <h5 class="card-title">{{ $product->title}}</h5>
                                                     <p class="card-text"> {!! \Illuminate\Support\Str::limit($product->text, $limit = 100) !!} </p>
-                                                    <div class=""><a href="{{ url('states/'.$product->slug) }}"><button class="btn btn-outline-warning float-left">View Product</button></a>
+                                                    <div class=""><a href="{{ url($product->location.'/'.$product->slug) }}"><button class="btn btn-outline-warning float-left">View Product</button></a>
                                                     </div>
                                                 </div>
 

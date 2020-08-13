@@ -24,7 +24,7 @@ class ProductsTableSeeder extends Seeder
                 'text' => 'Lorem'.$i .'ipsum dolor sit amet consectetur adipisicing elit. Enim, iure consectetur adipisicing elit. Enim, iure!',
                 'brand_id' => '1',
                 'category_id' => '1',
-                'location' => 'Delhi',
+                'location' => '1',
 
             ]);
 
@@ -42,7 +42,7 @@ class ProductsTableSeeder extends Seeder
                 'text' => 'Lorem'.$i .'ipsum dolor sit amet consectetur adipisicing elit. Enim, iure consectetur adipisicing elit. Enim, iure!',
                 'brand_id' => '2',
                 'category_id' => '2',
-                'location' => 'Bihar',
+                'location' => '3',
 
             ]);
 
@@ -59,7 +59,7 @@ class ProductsTableSeeder extends Seeder
                 'text' => 'Lorem'.$i .'ipsum dolor sit amet consectetur adipisicing elit. Enim, iure consectetur adipisicing elit. Enim, iure!',
                 'brand_id' => '3',
                 'category_id' => '3',
-                'location' => 'MadhyaPradesh',
+                'location' => '17',
 
             ]);
 
@@ -76,7 +76,7 @@ class ProductsTableSeeder extends Seeder
                 'text' => 'Lorem'.$i .'ipsum dolor sit amet consectetur adipisicing elit. Enim, iure consectetur adipisicing elit. Enim, iure!',
                 'brand_id' => '4',
                 'category_id' => '4',
-                'location' => 'Assam',
+                'location' => '19',
 
             ]);
 
@@ -93,7 +93,7 @@ class ProductsTableSeeder extends Seeder
                 'text' => 'Lorem'.$i .'ipsum dolor sit amet consectetur adipisicing elit. Enim, iure consectetur adipisicing elit. Enim, iure!',
                 'brand_id' => '5',
                 'category_id' => '5',
-                'location' => 'Goa',
+                'location' => '13',
             ]);
 
         }
@@ -109,7 +109,7 @@ class ProductsTableSeeder extends Seeder
                 'text' => 'Lorem'.$i .'ipsum dolor sit amet consectetur adipisicing elit. Enim, iure consectetur adipisicing elit. Enim, iure!',
                 'brand_id' => '6',
                 'category_id' => '6',
-                'location' => 'Kerala',
+                'location' => '11',
 
             ]);
 
@@ -126,7 +126,7 @@ class ProductsTableSeeder extends Seeder
                 'text' => 'Lorem'.$i .'ipsum dolor sit amet consectetur adipisicing elit. Enim, iure consectetur adipisicing elit. Enim, iure!',
                 'brand_id' => '7',
                 'category_id' => '7',
-                'location' => 'Rajasthan',
+                'location' => '4',
 
             ]);
         }

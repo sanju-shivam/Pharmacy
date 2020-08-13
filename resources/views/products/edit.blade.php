@@ -65,73 +65,15 @@
                 <div class="form-group d-flex justify-content-start">
                     <label for="Location" class="col-md-2 col-form-label text-md-right">Location</label>  
                     <select name="location" class="form-control col-md-6 float-right">
-                        <option  value="andrapradesh" @if($product->location == "andrapradesh") selected @endif >Andra Pradesh</option>
-
-                        <option value="arunachalpradesh" @if($product->location == "arunachalpradesh") selected @endif>Arunachal Pradesh</option>
-
-                        <option value="assam" @if($product->location == "assam") selected @endif>Assam</option>
-
-                        <option value="bihar" @if($product->location == "bihar") selected @endif>Bihar</option>
-
-                        <option value="chhattisgarh" @if($product->location == "chhattisgarh") selected @endif>Chhattisgarh</option>
-
-                        <option value="chandigarh" @if($product->location == "chandigarh") selected @endif>Chandigarh</option>
-
-                        <option value="delhi" @if($product->location == "delhi") selected @endif>Delhi</option>
-
-                        <option value="goa" @if($product->location == "goa") selected @endif>Goa</option>
-
-                        <option value="gujarat" @if($product->location == "gujarat") selected @endif>Gujarat</option>
-
-                        <option value="haryana" @if($product->location == "haryana") selected @endif>Haryana</option>
-
-                        <option value="himachalpradesh" @if($product->location == "himachalpradesh") selected @endif>Himachal Pradesh</option>
-
-                        <option value="jammuandkashmir" @if($product->location == "jammuandkashmir") selected @endif>Jammu and Kashmir</option>
-
-                        <option value="jharkhand" @if($product->location == "jharkhand") selected @endif>Jharkhand</option>
-
-                        <option value="karnataka" @if($product->location == "karnataka") selected @endif>Karnataka</option>
-
-                        <option value="kerala" @if($product->location == "kerala") selected @endif>Kerala</option>
-
-                        <option value="madyapradesh" @if($product->location == "madyapradesh") selected @endif>Madya Pradesh</option>
-
-                        <option value="maharashtra" @if($product->location == "maharashtra") selected @endif>Maharashtra</option>
-
-                        <option value="manipur" @if($product->location == "manipur") selected @endif>Manipur</option>
-
-                        <option value="meghalaya" @if($product->location == "meghalaya") selected @endif>Meghalaya</option>
-
-                        <option value="mizoram" @if($product->location == "mizoram") selected @endif>Mizoram</option>
-
-                        <option value="nagaland" @if($product->location == "nagaland") selected @endif>Nagaland</option>
-
-                        <option value="orissa" @if($product->location == "orissa") selected @endif>Orissa</option>
-
-                        <option value="punjab" @if($product->location == "punjab") selected @endif>Punjab</option>
-
-                        <option value="rajasthan" @if($product->location == "rajasthan") selected @endif>Rajasthan</option>
-
-                        <option value="sikkim" @if($product->location == "sikkim") selected @endif>Sikkim</option>
-
-                        <option value="tamilnadu" @if($product->location == "tamilnadu") selected @endif>Tamil Nadu</option>
-
-                        <option value="telagana" @if($product->location == "telagana") selected @endif>Telagana</option>
-
-                        <option value="tripura" @if($product->location == "tripura") selected @endif>Tripura</option>
-
-                        <option value="uttaranchal" @if($product->location == "uttaranchal") selected @endif>Uttaranchal</option>
-
-                        <option value="uttarpradesh" @if($product->location == "uttarpradesh") selected @endif>Uttar Pradesh</option>
-
-                        <option value="westbengal" @if($product->location == "westbengal") selected @endif>West Bengal</option>     
+                        @foreach($states as $state)
+                            <option  value="{{$state->id}}" @if($product->location == $state->id) selected @endif >{{$state->name}}</option>
+                        @endforeach
                     </select>
                 </div>
-                
+
                 <div class="form-group row">
                     <label for="text" class="col-md-2">Discription:</label>
-                    <div class="col-md-8">
+                    <div class="col-md-12">
                     <textarea name="text" id="editor" class="form-control col-md-6" autocomplete="off">{{ $product->text }}</textarea>
                     </div>
                 </div>

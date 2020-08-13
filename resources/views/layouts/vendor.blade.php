@@ -89,10 +89,10 @@
                                         <a class="dropdown-item" href="/dashboard/products">All Prodcuts</a>
                                         <a class="dropdown-item" href="/products/create">Add Products</a>
                                         @if(Auth::user()->slug == "supplier-user")
-                                            <a class="dropdown-item" href="">Lead</a>
+                                            <a class="dropdown-item" href="{{ route('lead.Supplier') }}">Lead</a>
                                         @endif
                                         @if(Auth::user()->slug == "supplier-user")
-                                            <a class="dropdown-item" href="">Select Brands</a>
+                                            <a class="dropdown-item" href="SelectBrands">Select Brands</a>
                                         @endif
 
                                         <a class="dropdown-item" class="dropdown-item" href="{{ route('logout') }}"
@@ -131,10 +131,10 @@
                     <a href="{{ route('lead.Supplier') }}">Lead</a>
                     @endif
                     @if(Auth::user()->slug == "supplier-user")
-                        <a class="dropdown-item" href="{{ url('/select_brands') }}">Select Brands</a>
+                        <a class="dropdown-item" href="{{ url('/SelectBrands') }}">Select Brands</a>
                     @endif
                     @if(Auth::user()->slug == "supplier-user")
-                        <a class="dropdown-item" href="{{ url('selected_brands') }}"> View Selected Brands</a>
+                        <a class="dropdown-item" href="{{ url('/SelectedBrands') }}"> View Selected Brands</a>
                     @endif
                 </div>
             </div>

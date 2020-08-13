@@ -5,7 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
 use Nicolaslopezj\Searchable\SearchableTrait;
-
+use App\State;
 class Product extends Model
 {
     use SearchableTrait;
@@ -62,4 +62,13 @@ class Product extends Model
         return $this->belongsTo(Brand::class);
     }
 
+    public function state()
+    {
+        return $this->belongsTo('App\State');
+    }
+
+    public function statees($id)
+    {
+        return(State::where('id','=',$id)->first()->name);
+    }
 }

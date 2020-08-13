@@ -81,11 +81,11 @@ class PagesController extends Controller
     {
         $socials = Social::select('icon','link')->get();
         $categories = Category::all();
-        $products = Product::select('id','image','title','text','slug')->where('location','=',$name)->paginate(10);
+        $products = Product::select('id','image','title','text','slug','location')->where('location','=',$name)->paginate(10);
         return view('pages.state_wise_product',compact('products','categories','name','socials'));
     }
 
-    public function single_product_state_wise($slug)
+    public function single_product_state_wise($location,$slug)
     {
         // All Categories 
         $categories = Category::paginate(12);

@@ -15,6 +15,7 @@ use App\Imports\ProductsImport;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Validator;
 use App\Social;
+use App\State;
 class ProductsController extends Controller
 {
     
@@ -68,6 +69,7 @@ class ProductsController extends Controller
         $brands = Brand::all();
 
         $categories = Category::all();
+        $states = State::select('name','id')->get();
 
         // $user_id = auth()->user()->id; //  NO USE
         // $user = User::find($user_id); // NO USE 
@@ -75,10 +77,10 @@ class ProductsController extends Controller
         // $product->categories()->attach($categories);
         $socials = Social::all();
         return view('products.create')->with([
-            
             'brands' => $brands,
             'categories' => $categories,
-            'socials' => $socials
+            'socials' => $socials,
+            'states' => $states,
             ]);
     }
 
@@ -108,8 +110,6 @@ class ProductsController extends Controller
             $fileNameToStore = 'productimage.jpeg';
         }
 
-        dd($request->all());
-
         $this->validate($request, [
             'title' => 'required',
             'slug' => 'required',
@@ -136,8 +136,9 @@ class ProductsController extends Controller
         $product->location = $request->input('location');
         $product->save();
 
-
-        return redirect('/admin/products')->with('success', 'Product Created');
+        if($product){
+            return redirect('/admin/products')->with('success', 'Product Created');
+        }
     }
 
     /**
@@ -172,10 +173,12 @@ class ProductsController extends Controller
         $brands = Brand::all();
         $categories = Category::all();
         $product = Product::find($id);
+        $states = State::select('name','id')->get();
         return view('products.edit')->with([
             'product' => $product,
             'brands' => $brands,
             'categories' => $categories,
+            'states' => $states,
             ]);
     }
 

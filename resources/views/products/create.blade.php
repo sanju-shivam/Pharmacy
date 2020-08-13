@@ -22,8 +22,7 @@
 
             <div class="form-group row">
                 <label for="file" class="col-md-2 col-form-label text-md-right">Image</label>
-                <input type="file" name="image" id="image" class="btn btn-outline-primary col-md-6">
-                
+                <input type="file" name="image" id="image" class="btn btn-outline-primary col-md-6">               
             </div>
 
             <div class="form-group row">
@@ -65,37 +64,9 @@
                 <label for="Location" class="col-md-2 col-form-label text-md-right">Location</label>  
                 <select name="location" class="form-control col-md-6 float-right">
                     <option value="">--Select--</option>
-                    <option value="andrapradesh">Andra Pradesh</option>
-                    <option value="arunachalpradesh">Arunachal Pradesh</option>
-                    <option value="assam">Assam</option>
-                    <option value="bihar">Bihar</option>
-                    <option value="chhattisgarh">Chhattisgarh</option>
-                    <option value="chandigarh">Chandigarh</option>
-                    <option value="delhi">Delhi</option>
-                    <option value="goa">Goa</option>
-                    <option value="gujarat">Gujarat</option>
-                    <option value="haryana">Haryana</option>
-                    <option value="himachalpradesh">Himachal Pradesh</option>
-                    <option value="jammuandkashmir">Jammu and Kashmir</option>
-                    <option value="jharkhand">Jharkhand</option>
-                    <option value="karnataka">Karnataka</option>
-                    <option value="kerala" >Kerala</option>
-                    <option value="madhyapradesh" >Madhya Pradesh</option>
-                    <option value="maharashtra" >Maharashtra</option>
-                    <option value="manipur" >Manipur</option>
-                    <option value="meghalaya" >Meghalaya</option>
-                    <option value="mizoram" >Mizoram</option>
-                    <option value="magaland" >Nagaland</option>
-                    <option value="orissa" >Orissa</option>
-                    <option value="punjab" >Punjab</option>
-                    <option value="rajasthan" >Rajasthan</option>
-                    <option value="sikkim" >Sikkim</option>
-                    <option value="tamilnadu" >Tamil Nadu</option>
-                    <option value="telagana" >Telagana</option>
-                    <option value="tripura">Tripura</option>
-                    <option value="uttaranchal" >Uttaranchal</option>
-                    <option value="uttarpradesh" >Uttar Pradesh</option>
-                    <option value="westbengal" >West Bengal</option>     
+                    @foreach($states as $state)
+                        <option value="{{$state->id}}">{{$state->name}}</option>
+                    @endforeach
                 </select>
             </div>
 
@@ -104,12 +75,11 @@
                 <textarea name="text" id="editor" class="form-control col-md-6" autocomplete="off"></textarea>
             </div>
 
-            <div class="">
+            <div class="mx-auto">
                 <button type="submit" class="btn btn-outline-success w-50">Submit</button>
             </div>
 
             </form>
-            
         </div>
     </div>
 </div>

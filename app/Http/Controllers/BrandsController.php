@@ -162,7 +162,7 @@ class BrandsController extends Controller
             ]);
 
             if($obj){
-                return redirect('/selected_brands');
+                return redirect('/SelectedBrands');
             }
         }
         else{
@@ -172,7 +172,7 @@ class BrandsController extends Controller
             $obj->save();
 
             if($obj){
-                return redirect('/select_brands');
+                return redirect('/SelectBrands');
             }
         }
     }

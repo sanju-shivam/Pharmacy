@@ -28,7 +28,7 @@
                         <tr>
                         <td style="width:20%"><img style="max-width:60%" src="/storage/products/{{ $product->image}}"></td>
                         <td>{{ $product->title}}</td>
-                        <td>{{ $product->location}}</td>
+                        <td>{{ $product->statees($product->location) }}</td>
                         <td class="d-flex justify-content-around">
 
                             <a href="{{ route('products.edit', $product->id) }}"><button class="btn btn-primary float-left">Edit</button></a>

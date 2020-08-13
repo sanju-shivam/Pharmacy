@@ -17,10 +17,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', 'PagesController@index');
 Route::get('state/{name}','PagesController@state');
 Route::get('/states', 'PagesController@states');// NEW
-Route::get('states/{slug}','PagesController@single_product_state_wise');// NEW
-Route::get('/select_brands','BrandsController@brands_add_view_supplier');// NEW
+Route::get('/SelectBrands','BrandsController@brands_add_view_supplier');// NEW
 Route::post('/save_brands','BrandsController@brands_store_supplier');// NEW
-Route::get('/selected_brands','BrandsController@brands_view_supplier');// NEW
+Route::get('/SelectedBrands','BrandsController@brands_view_supplier');// NEW
 // Route::post('/brands_update','BrandsController@brands_update_supplier');// NEW
 Route::post('filter/','ProductsController@filter');
 Route::get('/lead-supplier','LeadsController@lead_supplier')->name('lead.Supplier');//NEW
@@ -140,6 +139,7 @@ Route::resource('banners', 'BannersController');
 Route::resource('products', 'ProductsController');
 
 Route::resource('admin/socials', 'Admin\SocialLinksController');
+Route::get('{location}/{slug}','PagesController@single_product_state_wise');// NEW
 
 
 
