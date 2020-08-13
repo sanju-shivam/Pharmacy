@@ -50,67 +50,15 @@
                                     <div class="category-list-item" id="">
                                         <ul class="list-group list-group-flush navbar-nav" id="collapseCategory">
 
+                                            @foreach ($states as $state)
+
                                             <li class="list-group-item nav-item">
-                                                <a href="{{url('state/andrapradesh')}}" class="text-decoration-none text-dark">
-                                                    <i class="fas fa-angle-double-right text-primary mr-2"></i>Andra Pradesh
+                                                <a href="{{ route('products.index', ['state' => $state->slug]) }}" class="text-decoration-none text-dark">
+                                                    <i class="fas fa-angle-double-right text-primary mr-2"></i>{{ $state->name }}
                                                 </a>
                                             </li>
-                                            <li class="list-group-item nav-item">
-                                                <a href="{{url('state/arunachalpradesh')}}" class="text-decoration-none text-dark">
-                                                    <i class="fas fa-angle-double-right text-primary mr-2"></i>Arunachal Pradesh
-                                                </a>
-                                            </li>
-                                            <li class="list-group-item nav-item">
-                                                <a href="{{url('state/assam')}}" class="text-decoration-none text-dark">
-                                                    <i class="fas fa-angle-double-right text-primary mr-2"></i>Assam
-                                                </a>
-                                            </li>
-                                            <li class="list-group-item nav-item">
-                                                <a href="{{url('state/bihar')}}" class="text-decoration-none text-dark">
-                                                    <i class="fas fa-angle-double-right text-primary mr-2"></i>Bihar
-                                                </a>
-                                            </li>
-                                            <li class="list-group-item nav-item">
-                                                <a href="{{url('state/chhattisgarh')}}" class="text-decoration-none text-dark">
-                                                    <i class="fas fa-angle-double-right text-primary mr-2"></i>Chhattisgarh
-                                                </a>
-                                            </li>
-                                            <li class="list-group-item nav-item">
-                                                <a href="{{url('state/delhi')}}" class="text-decoration-none text-dark">
-                                                    <i class="fas fa-angle-double-right text-primary mr-2"></i>Delhi
-                                                </a>
-                                            </li>
-                                            <li class="list-group-item nav-item">
-                                                <a href="{{url('state/goa')}}" class="text-decoration-none text-dark">
-                                                    <i class="fas fa-angle-double-right text-primary mr-2"></i>Goa
-                                                </a>
-                                            </li>
-                                            <li class="list-group-item nav-item">
-                                                <a href="{{url('state/gujarat')}}" class="text-decoration-none text-dark">
-                                                    <i class="fas fa-angle-double-right text-primary mr-2"></i>Gujarat
-                                                </a>
-                                            </li>
-                                            <li class="list-group-item nav-item">
-                                                <a href="{{url('state/haryana')}}" class="text-decoration-none text-dark">
-                                                    <i class="fas fa-angle-double-right text-primary mr-2"></i>Haryana
-                                                </a>
-                                            </li>
-                                            <li class="list-group-item nav-item">
-                                                <a href="{{url('state/himachalpradesh')}}" class="text-decoration-none text-dark">
-                                                    <i class="fas fa-angle-double-right text-primary mr-2"></i>Himachal Pradesh
-                                                </a>
-                                            </li>
-                                            <li class="list-group-item nav-item">
-                                                <a href="{{url('state/jammuandkashmir')}}" class="text-decoration-none text-dark">
-                                                    <i class="fas fa-angle-double-right text-primary mr-2"></i>Jammu and Kashmir
-                                                </a>
-                                            </li>
-                                            <li class="list-group-item nav-item">
-                                                <a href="{{url('state/jharkhand')}}" class="text-decoration-none text-dark">
-                                                    <i class="fas fa-angle-double-right text-primary mr-2"></i>Jharkhand
-                                                </a>
-                                            </li>
-                                             <a class="btn w-100 btn-success" href="/states">View All</a>
+                                                
+                                            @endforeach
                                         </ul>
                                     </div>
                                 </div>

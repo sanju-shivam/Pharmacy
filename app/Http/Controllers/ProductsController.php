@@ -16,6 +16,8 @@ use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Validator;
 use App\Social;
 use App\State;
+use Illuminate\Support\Str;
+
 class ProductsController extends Controller
 {
     
@@ -40,17 +42,32 @@ class ProductsController extends Controller
             })->paginate(10);
 
             $categories = Category::all();
+            $states = State::all();
             $categoryName =  optional($categories->where('slug', request()->category)->first())->name;
 
-        } else {
+        } 
+        elseif(request()->state) {
+            // Filter by State
+            $products = Product::with('state')->whereHas('state', function ($query){
+                $query->where('slug', request()->state);
+            })->paginate(10);
+
+            $categories = Category::all();
+            $states = State::all();
+            $categoryName =  optional($categories->where('slug', request()->category)->first())->name;
+            // $stateName =  optional($states->where('slug', request()->state)->first())->name;
+        }
+        else {
 
             $products = Product::paginate(10);
             $categories = Category::all();
-            $categoryName = 'All Products';
+            $categoryName = 'All Categories';
+            $states = State::all();
 
         }
+
         $socials = Social::all();
-        $states = State::select('name','id')->get();
+
         //dd($states);
         
         return view('products.index')->with([
@@ -70,14 +87,9 @@ class ProductsController extends Controller
     public function create()
     {
         $brands = Brand::all();
-
         $categories = Category::all();
-        $states = State::select('name','id')->get();
+        $states = State::all();
 
-        // $user_id = auth()->user()->id; //  NO USE
-        // $user = User::find($user_id); // NO USE 
-
-        // $product->categories()->attach($categories);
         $socials = Social::all();
         return view('products.create')->with([
             'brands' => $brands,
@@ -95,6 +107,8 @@ class ProductsController extends Controller
      */
     public function store(Request $request)
     {
+
+        // dd($request);
 
         global $fileNameToStore;
         // Save the product
@@ -120,23 +134,19 @@ class ProductsController extends Controller
             'text' => 'required',
             'brand' => 'required',
             'category' => 'required',
-            'image' => 'mimes:jpeg,jpg,png,gif|required|nullable|max:1999',
-            'location' => 'required',
+            'image' => 'mimes:jpeg,jpg,png,gif|nullable|max:1999',
+            'state' => 'required',
         ]);
-
-        // $category = Category::where('category_id', '=', $category->id);
-        // $brand = Brand::where('brand_id', '=', $brand->id);
-
 
         $product = new Product;
         $product->title = $request->input('title');
-        $product->slug = $request->input('slug');
+        $product->slug = Str::slug($request->input('title', '-'));
         $product->molecules = $request->input('molecules');
         $product->text = $request->input('text');
         $product->brand_id = $request->get('brand');
         $product->category_id = $request->get('category');
         $product->image = $fileNameToStore;
-        $product->location = $request->input('location');
+        $product->state_id = $request->input('state');
         $product->save();
 
         if($product){
@@ -217,17 +227,17 @@ class ProductsController extends Controller
             'brand' => 'required',
             'category' => 'required',
             'image' => 'mimes:jpeg,jpg,png,gif|nullable|max:10000',
-            'location' => 'required',
+            'state' => 'required',
         ]);
 
         $product = Product::find($id);
         $product->title = $request->input('title');
-        $product->slug = $request->input('slug');
+        $product->slug = Str::slug($request->input('title', '-'));
         $product->molecules = $request->input('molecules');
         $product->text = $request->input('text');
         $product->brand_id = $request->get('brand');
         $product->category_id = $request->get('category');
-        $product->location = $request->input('location');
+        $product->state_id = $request->input('state');
         if($request->hasFile('image')) {
             $product->image = $fileNameToStore;
         }
@@ -313,6 +323,7 @@ class ProductsController extends Controller
                 'text' => $row[5],
                 'brand_id' => $row[6],
                 'category_id' => $row[7],
+                'state_id' => $row[8],
             ];
         }
 
@@ -355,32 +366,32 @@ class ProductsController extends Controller
 
 
 
-    public function filter(Request $request)
-    {
-        //dd($request->all());
-        if(!empty($request->FilterCategory) and empty($request->state)){
+    // public function filter(Request $request)
+    // {
+    //     //dd($request->all());
+    //     if(!empty($request->FilterCategory) and empty($request->state)){
             
-            $products = Product::select('image','title','slug','text')->where('category_id','=',$request->FilterCategory)->get();
-            $categories = Category::all();
-            $socials = Social::select('link','icon')->get();
-            $states = State::select('name','id')->get();
-            return view('products.Filter_products',compact('products','categories','socials','states'));           
-        }
-        else if(empty($request->FilterCategory) and !empty($request->state)){
-            $products = Product::select('image','title','slug','text')->where('location','=',$request->state)->paginate(4);
-            $categories = Category::all();
-            $socials = Social::select('link','icon')->get();
-            $states = State::select('name','id')->get();
-            return view('products.Filter_products',compact('products','categories','socials','states'));
-        }
-        else{
-            $products = Product::select('image','title','slug','text')->where('location','=',$request->state)->where('category_id','=',$request->FilterCategory)->get();
-            $categories = Category::all();
-            $socials = Social::select('link','icon')->get();
-            $states = State::select('name','id')->get();
-            return view('products.Filter_products',compact('products','categories','socials','states'));
-        }
-    }
+    //         $products = Product::select('image','title','slug','text')->where('category_id','=',$request->FilterCategory)->get();
+    //         $categories = Category::all();
+    //         $socials = Social::select('link','icon')->get();
+    //         $states = State::select('name','id')->get();
+    //         return view('products.Filter_products',compact('products','categories','socials','states'));           
+    //     }
+    //     else if(empty($request->FilterCategory) and !empty($request->state)){
+    //         $products = Product::select('image','title','slug','text')->where('location','=',$request->state)->paginate(4);
+    //         $categories = Category::all();
+    //         $socials = Social::select('link','icon')->get();
+    //         $states = State::select('name','id')->get();
+    //         return view('products.Filter_products',compact('products','categories','socials','states'));
+    //     }
+    //     else{
+    //         $products = Product::select('image','title','slug','text')->where('location','=',$request->state)->where('category_id','=',$request->FilterCategory)->get();
+    //         $categories = Category::all();
+    //         $socials = Social::select('link','icon')->get();
+    //         $states = State::select('name','id')->get();
+    //         return view('products.Filter_products',compact('products','categories','socials','states'));
+    //     }
+    // }
 
 
 

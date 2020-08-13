@@ -30,10 +30,10 @@
                 <input type="text" name="title" id="title" class="form-control col-md-6" autocomplete="off">
             </div>
 
-            <div class="form-group row" style="display: none">
+            {{-- <div class="form-group row">
                 <label for="slug" class="col-md-2 col-form-label text-md-right">slug</label>
                 <input type="text" name="slug" id="slug" class="form-control col-md-6" autocomplete="off">
-            </div>
+            </div> --}}
 
             <div class="form-group row">
                 <label for="molecules" class="col-md-2 col-form-label text-md-right">Molecules</label>
@@ -61,8 +61,8 @@
             </div>
 
             <div class="form-group d-flex justify-content-start">
-                <label for="Location" class="col-md-2 col-form-label text-md-right">Location</label>  
-                <select name="location" class="form-control col-md-6 float-right">
+                <label for="state" class="col-md-2 col-form-label text-md-right">State</label>  
+                <select name="state" class="form-control col-md-6 float-right">
                     <option value="">--Select--</option>
                     @foreach($states as $state)
                         <option value="{{$state->id}}">{{$state->name}}</option>

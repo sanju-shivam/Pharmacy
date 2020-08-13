@@ -9,12 +9,6 @@
             <!-- List of products -->
             
             <div class="row">
-
-            <div class="mx-auto">
-                <br>
-                <button class="btn btn-warning" data-toggle="modal" data-target="#exampleModal" style="color: white;">Apply Filters
-                    <i class="fa fa-caret-down"></i></button>
-            </div>
                 <div class="col-md-12 pt-5">
 
                         <div class="row">
@@ -57,67 +51,15 @@
                                     <div class="category-list-item" id="">
                                         <ul class="list-group list-group-flush navbar-nav" id="collapseCategory">
 
+                                            @foreach ($states as $state)
+
                                             <li class="list-group-item nav-item">
-                                                <a href="{{url('state/AndraPradesh')}}" class="text-decoration-none text-dark">
-                                                    <i class="fas fa-angle-double-right text-primary mr-2"></i>Andra Pradesh
+                                                <a href="{{ route('products.index', ['state' => $state->slug]) }}" class="text-decoration-none text-dark">
+                                                    <i class="fas fa-angle-double-right text-primary mr-2"></i>{{ $state->name }}
                                                 </a>
                                             </li>
-                                            <li class="list-group-item nav-item">
-                                                <a href="{{url('state/ArunachalPradesh')}}" class="text-decoration-none text-dark">
-                                                    <i class="fas fa-angle-double-right text-primary mr-2"></i>Arunachal Pradesh
-                                                </a>
-                                            </li>
-                                            <li class="list-group-item nav-item">
-                                                <a href="{{url('state/Assam')}}" class="text-decoration-none text-dark">
-                                                    <i class="fas fa-angle-double-right text-primary mr-2"></i>Assam
-                                                </a>
-                                            </li>
-                                            <li class="list-group-item nav-item">
-                                                <a href="{{url('state/Bihar')}}" class="text-decoration-none text-dark">
-                                                    <i class="fas fa-angle-double-right text-primary mr-2"></i>Bihar
-                                                </a>
-                                            </li>
-                                            <li class="list-group-item nav-item">
-                                                <a href="{{url('state/Chhattisgarh')}}" class="text-decoration-none text-dark">
-                                                    <i class="fas fa-angle-double-right text-primary mr-2"></i>Chhattisgarh
-                                                </a>
-                                            </li>
-                                            <li class="list-group-item nav-item">
-                                                <a href="{{url('state/Delhi')}}" class="text-decoration-none text-dark">
-                                                    <i class="fas fa-angle-double-right text-primary mr-2"></i>Delhi
-                                                </a>
-                                            </li>
-                                            <li class="list-group-item nav-item">
-                                                <a href="{{url('state/Goa')}}" class="text-decoration-none text-dark">
-                                                    <i class="fas fa-angle-double-right text-primary mr-2"></i>Goa
-                                                </a>
-                                            </li>
-                                            <li class="list-group-item nav-item">
-                                                <a href="{{url('state/Gujarat')}}" class="text-decoration-none text-dark">
-                                                    <i class="fas fa-angle-double-right text-primary mr-2"></i>Gujarat
-                                                </a>
-                                            </li>
-                                            <li class="list-group-item nav-item">
-                                                <a href="{{url('state/Haryana')}}" class="text-decoration-none text-dark">
-                                                    <i class="fas fa-angle-double-right text-primary mr-2"></i>Haryana
-                                                </a>
-                                            </li>
-                                            <li class="list-group-item nav-item">
-                                                <a href="{{url('state/HimachalPradesh')}}" class="text-decoration-none text-dark">
-                                                    <i class="fas fa-angle-double-right text-primary mr-2"></i>Himachal Pradesh
-                                                </a>
-                                            </li>
-                                            <li class="list-group-item nav-item">
-                                                <a href="{{url('state/JammuandKashmir')}}" class="text-decoration-none text-dark">
-                                                    <i class="fas fa-angle-double-right text-primary mr-2"></i>Jammu and Kashmir
-                                                </a>
-                                            </li>
-                                            <li class="list-group-item nav-item">
-                                                <a href="{{url('state/Jharkhand')}}" class="text-decoration-none text-dark">
-                                                    <i class="fas fa-angle-double-right text-primary mr-2"></i>Jharkhand
-                                                </a>
-                                            </li>
-                                             <a class="btn w-100 btn-success" href="/States">View All</a>
+                                                
+                                            @endforeach
                                         </ul>
                                     </div>
                                 </div>
@@ -166,7 +108,7 @@
                                 @endforelse
                                     
                                     <div class=" d-flex justify-content-around">
-                                        <p> {{-- $products->appends(request()->except('page'))->links() --}}<p>
+                                        <p> {{ $products->appends(request()->except('page'))->links() }}<p>
                                     </div>
                                    
                             </div>
@@ -182,46 +124,6 @@
             </div>
         </div>
     </div>
-            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-              <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                  <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Filter Products</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                    </button>
-                  </div>
-                  <div class="modal-body">
-                    <form method="post" action="{{ url('filter/') }}">
-                        @csrf
-                        <table class="table table-rsponsive">
-                            <tr>
-                                <label>Category</label>
-                                <select class="form-control" name="FilterCategory">
-                                    <option value="" >--select--</option>
-                                    @foreach ($categories as $category)
-                                    <option value="{{$category->id}}" >{{ $category->name }}</option>
-                                    @endforeach
-                                </select>
-                            </tr><br>
-                            <tr>
-                                <label>State</label>
-                                <select name="state" class="form-control ">
-                                    <option value="" > --select-- </option>
-                                    @foreach($states as $state)
-                                        <option value="{{$state->id}}"> {{$state->name}} </option>
-                                    @endforeach
-                                </select>
-                            </tr>
-                        </table>
-                      </div>
-                      <div class="modal-footer">
-                        <input type="submit" class="btn btn-primary" name="Filterr" value="Filter">
-                      </div>
-                    </form>
-                </div>
-              </div>
-            </div>
 </main>
      
 

@@ -15,7 +15,7 @@ class BrandsTableSeeder extends Seeder
         Brand::insert([
 
             ['name' => 'Himalya',
-            'slug' => 'himalya',],
+            'slug' => 'himalya'],
 
             ['name' => 'Cipla',
             'slug' => 'cipla'],

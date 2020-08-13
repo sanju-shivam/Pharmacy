@@ -12,15 +12,111 @@ class StateTableSeeder extends Seeder
      */
     public function run()
     {
-    	$states = ['andrapradesh','arunachalpradesh','assam','bihar','chhattisgarh','chandigarh','delhi','goa','gujarat','haryana','himachalpradesh','jammuandkashmir','jharkhand','karnataka','kerala','madhyapradesh','maharashtra','manipur','meghalaya','mizoram','magaland','orissa','punjab','rajasthan','sikkim','tamilnadu','telagana','tripura','uttaranchal','uttarpradesh','westbengal'];
-    	$states_slug = ['andra-pradesh','arunachal-pradesh','assam','bihar','chhattisgarh','chandigarh','delhi','goa','gujarat','haryana','himachal-pradesh','jammu-and-kashmir','jharkhand','karnataka','kerala','madhya-pradesh','maharashtra','manipur','meghalaya','mizoram','magaland','orissa','punjab','rajasthan','sikkim','tamilnadu','telagana','tripura','uttaranchal','uttar-pradesh','west-bengal'];
-        for ($i = 0; $i < count($states); $i++) {
-            State::create([
-                'name' => $states[$i],
-                'slug' => $states_slug[$i],
-            ]);
+        State::insert([
+            ['name' => 'Andhra Pradesh',
+             'slug' => 'andhra-pradesh'
+            ],
+            ['name' => 'Arunachal Pradesh',
+             'slug' => 'arunachal-pradesh'
+            ],
+            ['name' => 'Assam',
+             'slug' => 'assam'
+            ],
+            ['name' => 'Bihar',
+             'slug' => 'bihar'
+            ],
+            ['name' => 'Chhatisgarh',
+             'slug' => 'chatisgarh'
+            ],
+            ['name' => 'Delhi',
+             'slug' => 'delhi'
+            ],
+            ['name' => 'Goa',
+             'slug' => 'goa'
+            ],
+            ['name' => 'Gujrat',
+             'slug' => 'gujrat'
+            ],
+            ['name' => 'Haryana',
+             'slug' => 'haryana'
+            ],
+            ['name' => 'Himachal Pradesh',
+             'slug' => 'himachal-pradesh'
+            ],
+            ['name' => 'Jammu And Kashmir',
+             'slug' => 'jammu-and-kashmir'
+            ],
+            ['name' => 'Jharkhand',
+             'slug' => 'jharkhand'
+            ],
+            ['name' => 'Karnataka',
+             'slug' => 'karnataka'
+            ],
+            ['name' => 'Kerla',
+             'slug' => 'kerla'
+            ],
+            ['name' => 'Madhya Pradesh',
+             'slug' => 'madhya-pradesh'
+            ],
+            ['name' => 'Maharashtra',
+             'slug' => 'maharashtra'
+            ],
+            ['name' => 'Manipur',
+             'slug' => 'manipur'
+            ],
+            
+            ['name' => 'Meghalaya',
+             'slug' => 'meghalaya'
+            ],
+            
+            ['name' => 'Mizoram',
+             'slug' => 'mizoram'
+            ],
+            
+            ['name' => 'Nagaland',
+             'slug' => 'nagaland'
+            ],
+            
+            ['name' => 'Orissa',
+             'slug' => 'orissa'
+            ],
+            
+            ['name' => 'Punjab',
+             'slug' => 'punjab'
+            ],
+            
+            ['name' => 'Rajasthan',
+             'slug' => 'rajasthan'
+            ],
+            
+            ['name' => 'Sikkim',
+             'slug' => 'sikkim'
+            ],
+            
+            ['name' => 'Tamilnadu',
+             'slug' => 'tamilnadu'
+            ],
+            
+            ['name' => 'Telangna',
+             'slug' => 'telangna'
+            ],
+            
+            ['name' => 'Tripura',
+             'slug' => 'tripura'
+            ],
+            
+            ['name' => 'Uttaranchal',
+             'slug' => 'uttaranchal'
+            ],
+            
+            ['name' => 'Uttar Pradesh',
+             'slug' => 'Uttar-pradesh'
+            ],
+            
+            ['name' => 'West Bengal',
+             'slug' => 'west-bengal'
+            ],
+        ]);
 
-
-        }
     }
 }

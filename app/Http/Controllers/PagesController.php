@@ -10,6 +10,7 @@ use App\Product;
 use App\Page;
 use App\Social;
 use Session;
+use App\State;
 
 class PagesController extends Controller
 {
@@ -24,13 +25,17 @@ class PagesController extends Controller
         $banners = Banner::all();
         // Blogs
         $blogs = Blog::orderBy('id', 'desc')->paginate(3);
+        // Social
         $socials = Social::select('icon','link')->get();
+        // State
+        $states = State::all();
         return view('pages.index')->with([
             'blogs' => $blogs,
             'banners' => $banners,
             'categories' => $categories,
             'page' => $page,
-            'socials' => $socials
+            'socials' => $socials,
+            'states' => $states,
             ]);
     }
 

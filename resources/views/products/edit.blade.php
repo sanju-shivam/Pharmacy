@@ -57,16 +57,16 @@
                     <label for="category" class="col-md-2 col-form-label text-md-right">Category</label>  
                     <select name="category" class="form-control col-md-6 float-right">
                         @foreach ($categories as $category)
-                        <option value="{{ $category->id }}">{{ $category->name }}</option>
+                        <option value="{{ $category->id }}" @if($product->category_id == $category->id) selected @endif >{{ $category->name }}</option>
                         @endforeach
                     </select>
                 </div>
 
                 <div class="form-group d-flex justify-content-start">
-                    <label for="Location" class="col-md-2 col-form-label text-md-right">Location</label>  
-                    <select name="location" class="form-control col-md-6 float-right">
+                    <label for="state" class="col-md-2 col-form-label text-md-right">state</label>  
+                    <select name="state" class="form-control col-md-6 float-right">
                         @foreach($states as $state)
-                            <option  value="{{$state->id}}" @if($product->location == $state->id) selected @endif >{{$state->name}}</option>
+                            <option  value="{{$state->id}}" @if($product->state_id == $state->id) selected @endif >{{$state->name}}</option>
                         @endforeach
                     </select>
                 </div>

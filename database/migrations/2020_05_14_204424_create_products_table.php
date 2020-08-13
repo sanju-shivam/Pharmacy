@@ -22,7 +22,7 @@ class CreateProductsTable extends Migration
             $table->mediumText('text');
             $table->integer('brand_id');
             $table->integer('category_id');
-            $table->integer('location');
+            $table->integer('state_id');
             $table->timestamps();
         });
     }
