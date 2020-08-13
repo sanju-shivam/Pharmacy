@@ -50,12 +50,15 @@ class ProductsController extends Controller
 
         }
         $socials = Social::all();
+        $states = State::select('name','id')->get();
+        //dd($states);
         
         return view('products.index')->with([
             'products' => $products, 
             'categories' => $categories,
             'categoryName' => $categoryName,
-            'socials' => $socials
+            'socials' => $socials,
+            'states' => $states,
             ]);
     }
 
@@ -359,20 +362,23 @@ class ProductsController extends Controller
             
             $products = Product::select('image','title','slug','text')->where('category_id','=',$request->FilterCategory)->get();
             $categories = Category::all();
-            $socials = Social::select('links','icon');
-            return view('products.Filter_products',compact('products','categories','socials','filter'));           
+            $socials = Social::select('link','icon')->get();
+            $states = State::select('name','id')->get();
+            return view('products.Filter_products',compact('products','categories','socials','states'));           
         }
         else if(empty($request->FilterCategory) and !empty($request->state)){
-            $products = Product::select('image','title','slug','text')->where('location','=',$request->state)->get();
+            $products = Product::select('image','title','slug','text')->where('location','=',$request->state)->paginate(4);
             $categories = Category::all();
-            $socials = Social::select('links','icon');
-            return view('products.Filter_products',compact('products','categories','socials','filter'));
+            $socials = Social::select('link','icon')->get();
+            $states = State::select('name','id')->get();
+            return view('products.Filter_products',compact('products','categories','socials','states'));
         }
         else{
             $products = Product::select('image','title','slug','text')->where('location','=',$request->state)->where('category_id','=',$request->FilterCategory)->get();
             $categories = Category::all();
-            $socials = Social::select('links','icon');
-            return view('products.Filter_products',compact('products','categories','socials','filter'));
+            $socials = Social::select('link','icon')->get();
+            $states = State::select('name','id')->get();
+            return view('products.Filter_products',compact('products','categories','socials','states'));
         }
     }
 
