@@ -134,7 +134,7 @@ class BrandsController extends Controller
     public function brands_add_view_supplier()
     {
         $brands = Brand::select('name','id')->get();
-        return view('supplier.select_brands',compact('brands'));
+        return view('dashboard.supplier.select_brands',compact('brands'));
     }
 
     // Supplier want to update or view brands
@@ -144,7 +144,7 @@ class BrandsController extends Controller
         $brand_id =  explode(',',$brand_id[0]->brand_id);
         // dd($brand_id,Auth::user()->id);
         $brands = Brand::select('name','id')->get();
-        return view('supplier.view_selected_brands',compact('brands','brand_id'));
+        return view('dashboard.supplier.view_selected_brands',compact('brands','brand_id'));
     }
 
     // Supplier wants to add brands to database 

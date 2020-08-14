@@ -10,6 +10,7 @@ use App\Brand;
 use App\LeadStatus;
 use App\BrandUser;
 use Auth;
+use Illuminate\Support\Facades\Mail;
 class LeadsController extends Controller
 {
 
@@ -78,7 +79,9 @@ class LeadsController extends Controller
         $lead->phone = $request->input('phone');
         $lead->requirement = $request->input('requirement');
         if($lead->save()) {
-            $request->session()->flash('success',' Request Submitted');
+
+            
+            $request->session()->flash('success',' Request Submitted And Mail Sent');
         }else{
             $request->session()->flash('error', 'There was an error sending request. Please try again');
         }
@@ -246,10 +249,30 @@ class LeadsController extends Controller
                     }
                 }
             }
-            return view('supplier.supplier_leads_view',compact('f','result'));
+            return view('dashboard.supplier.supplier_leads_view',compact('f','result'));
         }else{
-            return view('supplier.supplier_leads_view_if_no_lead_match');
+            return view('dashboard.supplier.supplier_leads_view_if_no_lead_match');
         }
         
     }
 }
+
+
+
+
+// $demo =  array(
+//                 'name' => $request->name,
+//                 'email' => $request->email,
+//                 'phone' => $request->phone,
+//                 'requirement' => $request->requirement,
+//             );
+
+//             $admin_mail = env('MAIL_USERNAME');
+//             $name = $request->name;
+//             $requirement = $request->requirement;
+//             $email = $request->email;
+//             $phone = $request->phone;
+
+//             Mail::send('mails.demo_mail',$demo,function($message)use($name,$requirement,$email,$phone){
+//                     $message->to(env('MAIL_USERNAME'))->subject('NEW LEAD');
+//             });

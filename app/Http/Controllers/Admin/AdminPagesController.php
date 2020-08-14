@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use Auth;
 use App\Page;
 use Gate;
+use App\User;
+use Illuminate\Support\Facades\Hash;
 
 class AdminPagesController extends Controller
 {
@@ -141,5 +143,29 @@ class AdminPagesController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+
+
+    public function edit_admin($id)
+    {
+        $user = User::where('id','=',$id)->first();
+        return view('admin.admin_update_profile',compact('user'));
+    }
+
+    public function update_admin(Request $request , $id)
+    {
+        $user_password = User::where('id','=',$id)->first()->password;
+        if(Hash::check($request->oldpassword, $user_password)){
+            $a = User::where('id','=',$id)->update([
+                'password' => bcrypt($request->newpassword),
+                'name' => $request->name,
+                'email' => $request->email,
+            ]);
+
+            if($a){
+                return redirect('admin');
+            }
+        }
     }
 }

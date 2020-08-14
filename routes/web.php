@@ -15,30 +15,31 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::get('/', 'PagesController@index');
-Route::get('state/{name}','PagesController@state');
-Route::get('/states', 'PagesController@states');// NEW
+Route::get('state/{name}','PagesController@state')->name('satate.statename');
+Route::get('/states', 'PagesController@states')->name('states');// NEW
 Route::get('/SelectBrands','BrandsController@brands_add_view_supplier');// NEW
-Route::post('/save_brands','BrandsController@brands_store_supplier');// NEW
-Route::get('/SelectedBrands','BrandsController@brands_view_supplier');// NEW
+Route::post('/save_brands','BrandsController@brands_store_supplier')->name('savebrands');// NEW
+Route::get('/SelectedBrands','BrandsController@brands_view_supplier')->name('selected.brands');// NEW
 // Route::post('/brands_update','BrandsController@brands_update_supplier');// NEW
-Route::post('filter/','ProductsController@filter');
+Route::post('filter/','ProductsController@filter')->name('filter'); //NEW
 Route::get('/lead-supplier','LeadsController@lead_supplier')->name('lead.Supplier');//NEW
+Route::get('user/{id}/edit','Admin\AdminPagesController@edit_admin')->name('user.id.edit');// NEW
+Route::post('admin/{id}','Admin\AdminPagesController@update_admin')->name('admin.id');// NEW
+Route::get('/categories', 'PagesController@category')->name('categories');
 
-Route::get('/categories', 'PagesController@category');
 
+Route::get('/career', 'PagesController@career')->name('career');
 
-Route::get('/career', 'PagesController@career');
+Route::get('/company', 'PagesController@company')->name('company');
 
-Route::get('/company', 'PagesController@company');
+Route::get('/contact', 'PagesController@contact')->name('contact');
 
-Route::get('/contact', 'PagesController@contact');
-
-Route::get('/faq', 'PagesController@faq');
+Route::get('/faq', 'PagesController@faq')->name('faq');
 
 Route::get('/logins', 'PagesController@login');// NEW
 Route::get('/logout','PagesController@logout');// NEW
 
-Route::get('/termsandcondition', 'PagesController@termsandcondition');
+Route::get('/termsandcondition', 'PagesController@termsandcondition')->name('termsandcondition');
 
 Route::resource('company', 'CompanyController');
 
@@ -139,7 +140,7 @@ Route::resource('banners', 'BannersController');
 Route::resource('products', 'ProductsController');
 
 Route::resource('admin/socials', 'Admin\SocialLinksController');
-Route::get('{location}/{slug}','PagesController@single_product_state_wise');// NEW
+Route::get('{location}/{slug}','PagesController@single_product_state_wise')->name('location.slud');// NEW
 
 
 
