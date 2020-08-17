@@ -4,7 +4,7 @@
         <div class="col-md-12 m-auto">
         
             <hr>
-            <form role="form" method="POST" action="{{route('admin.leads.store')}}">
+            <form role="form" method="POST" action="{{route('lead.store')}}">
 
                 @csrf
 
