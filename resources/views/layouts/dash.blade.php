@@ -135,10 +135,9 @@
                         
                     @endcan
 
-                    @can('products', Product::class)
+                    
                     <a href="{{ url('user/'.Auth::user()->id.'/edit') }}">Edit Profile</a>
                         
-                    @endcan
 
                     <div>
 

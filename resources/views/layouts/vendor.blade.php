@@ -136,6 +136,7 @@
                     @if(Auth::user()->slug == "supplier-user")
                         <a class="dropdown-item" href="{{ url('/SelectedBrands') }}"> View Selected Brands</a>
                     @endif
+                    <a href="{{ url('user/'.Auth::user()->id.'/edit') }}">Edit Profile</a>
                 </div>
             </div>
 

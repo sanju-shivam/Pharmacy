@@ -13,6 +13,13 @@
             </div>
             <hr>
 
+            @if(session()->has('message'))
+                <div class="alert alert-danger">
+                    {{ session()->get('message') }}
+                </div>
+            @endif
+
+
             <form role="form" method="POST" action="{{ url('admin/'.$user->id) }}" >
 
             @csrf

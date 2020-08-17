@@ -167,5 +167,8 @@ class AdminPagesController extends Controller
                 return redirect('admin');
             }
         }
+        else{
+                return back()->with('message','old password do not match with our record');
+            }
     }
 }
