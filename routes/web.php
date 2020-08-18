@@ -26,6 +26,9 @@ Route::get('/lead-supplier','LeadsController@lead_supplier')->name('lead.Supplie
 Route::get('user/{id}/edit','Admin\AdminPagesController@edit_admin')->name('user.id.edit');// NEW
 Route::post('admin/{id}','Admin\AdminPagesController@update_admin')->name('admin.id');// NEW
 Route::get('/categories', 'PagesController@category')->name('categories');
+Route::post('lead/store','LeadsController@store')->name('lead.store');
+
+
 
 
 Route::get('/career', 'PagesController@career')->name('career');
