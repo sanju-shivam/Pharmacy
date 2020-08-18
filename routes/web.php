@@ -27,7 +27,12 @@ Route::get('user/{id}/edit','Admin\AdminPagesController@edit_admin')->name('user
 Route::post('admin/{id}','Admin\AdminPagesController@update_admin')->name('admin.id');// NEW
 Route::get('/categories', 'PagesController@category')->name('categories');
 Route::post('lead/store','LeadsController@store')->name('lead.store');
+Route::resource('admin/subscription', 'Admin\SubscriptionController');
+Route::get('admin/subscription/edit/{id}','Admin\SubscriptionController@edit');
+Route::get('admin/subscription/delete/{id}','Admin\SubscriptionController@destroy');
 
+Route::post('admin/subscription/store','Admin\SubscriptionController@store');
+Route::post('admin/subscription/update/{id}','Admin\SubscriptionController@update');
 
 
 
