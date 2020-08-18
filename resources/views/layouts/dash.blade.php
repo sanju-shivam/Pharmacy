@@ -153,6 +153,10 @@
                         <a href="/admin/team">Team</a>
                         @endcan
 
+                        @can('team', User::class)
+                        <a href="/admin/subscription">Plans</a>
+                        @endcan
+
                         <a href="/admin/socials">Socials</a>
                     </div>
                 </div>

@@ -83,7 +83,6 @@ Route::get('admin/', 'Admin\DashPagesController@adminIndex')->middleware('can:ed
 
 // Admin Routes Only
 
-// Route::get('admin/login', 'Admin\DashPagesController@adminLogin')->name('admin.login');
 
 Route::namespace('Admin')
     ->prefix('admin')
@@ -101,11 +100,12 @@ Route::prefix('admin')
 
     Route::resource('/brands', 'BrandsController');
     Route::resource('/leads', 'LeadsController');
-
+    
 });
 
 Route::resource('admin/team', 'Admin\TeamController');
 
+Route::resource('admin/subscription', 'Admin\SubscriptionController');
 
 Route::post('admin/products/import', 'ProductsController@import')
         ->name('admin.products.import');
@@ -140,7 +140,7 @@ Route::resource('banners', 'BannersController');
 Route::resource('products', 'ProductsController');
 
 Route::resource('admin/socials', 'Admin\SocialLinksController');
-Route::get('{location}/{slug}','PagesController@single_product_state_wise')->name('location.slud');// NEW
+Route::get('{location}/{slug}','PagesController@single_product_state_wise')->name('location.slug');// NEW
 
 
 
