@@ -4,6 +4,9 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Social;
+use App\Subscription;
+use Illuminate\Support\Facades\Hash;
 
 class SubscriptionController extends Controller
 {
@@ -14,7 +17,9 @@ class SubscriptionController extends Controller
      */
     public function index()
     {
-        //
+        $socials = Social::all();
+        $subcriptions = Subscription::all();
+        return view('admin.subcription.index',compact('socials','subcriptions'));
     }
 
     /**
@@ -24,7 +29,8 @@ class SubscriptionController extends Controller
      */
     public function create()
     {
-        //
+        $socials = Social::all();
+        return view('admin.subcription.create',compact('socials'));
     }
 
     /**
@@ -35,7 +41,20 @@ class SubscriptionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $obj = new Subscription;
+        $obj->name = $request->name;
+        $obj->price = $request->price;
+        $obj->desc1 = $request->desc1;
+        $obj->desc2 = $request->desc2;
+        $obj->desc3 = $request->desc3;
+        $obj->desc4 = $request->desc4;
+        $obj->desc5 = $request->desc5;
+        $obj->save();
+
+        if($obj){
+            return redirect('admin\subscription\create')->with('message','Subscription Added Succssfully');
+        }
+
     }
 
     /**
@@ -46,7 +65,7 @@ class SubscriptionController extends Controller
      */
     public function show($id)
     {
-        //
+        
     }
 
     /**
@@ -57,7 +76,9 @@ class SubscriptionController extends Controller
      */
     public function edit($id)
     {
-        //
+        $subcription = Subscription::find($id);
+        return view('admin.subcription.edit',compact('subcription'));
+
     }
 
     /**
@@ -69,7 +90,19 @@ class SubscriptionController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $obj = Subscription::where('id','=',$id)->update([
+            'name' => $request->name,
+            'price'=> $request->price,
+            'desc1' => $request->desc1,
+            'desc2' => $request->desc2,
+            'desc3' => $request->desc3,
+            'desc4' => $request->desc4,
+            'desc5' => $request->desc5,
+        ]);
+
+        if($obj){
+            return redirect('admin\subscription')->with('message','Subscription Updated Succssfully');
+        }
     }
 
     /**
@@ -80,6 +113,10 @@ class SubscriptionController extends Controller
      */
     public function destroy($id)
     {
-        //
+       
+        $obj = Subscription::find($id)->delete();
+        if($obj){
+            return redirect('admin\subscription')->with('message','Subscription Deleted Succssfully');
+        }
     }
 }

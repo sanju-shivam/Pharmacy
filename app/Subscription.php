@@ -6,5 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Subscription extends Model
 {
-    //
+    protected $fillable=[
+    	'name', 'price', 'desc1','desc2','desc3','desc4','desc5'
+    ];
 }
