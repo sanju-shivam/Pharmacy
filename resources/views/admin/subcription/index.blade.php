@@ -2,7 +2,6 @@
 
 @section('content')
 
-<<<<<<< HEAD
 
 <div id="main" class="bg-light">
     <div class="row">
@@ -22,8 +21,6 @@
 </div>
      
 
-@endsection
-=======
 <div class="container-fluid">
     <div id="main">
         <div class="row">
@@ -74,4 +71,3 @@
 @endsection
      
 
->>>>>>> 62a59499cae5551d83a906c0ee0e58ccf1fe1f90

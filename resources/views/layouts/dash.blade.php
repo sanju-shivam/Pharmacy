@@ -135,17 +135,8 @@
                         
                     @endcan
                      
-                    @can('products', Product::class)
-                    <a href="/admin/subscription">Subscription</a>
-                        
-                    @endcan
-
-
-
-                    
                     <a href="{{ url('user/'.Auth::user()->id.'/edit') }}">Edit Profile</a>
                         
-
                     <div>
 
                         @can('categories', Category::class)

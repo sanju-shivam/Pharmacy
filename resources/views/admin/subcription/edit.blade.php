@@ -1,7 +1,6 @@
 @extends('layouts.dash')
 
 @section('content')
-<<<<<<< HEAD
 
 
 <div id="main" class="bg-light">
@@ -16,9 +15,6 @@
             </div>
             
             <div class="bg-white shadow p-5">
-
-                // Add form Here
-=======
     
     
 <div class="container">
@@ -63,20 +59,14 @@
                 </form>
                 <div class="my-3">
                 </div>
->>>>>>> 62a59499cae5551d83a906c0ee0e58ccf1fe1f90
                 
             </div>
 
         </div>
     </div>
 </div>
-<<<<<<< HEAD
+
      
 
 @endsection
-=======
-
-@endsection
      
-
->>>>>>> 62a59499cae5551d83a906c0ee0e58ccf1fe1f90
