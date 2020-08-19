@@ -89,11 +89,9 @@
                                         <a class="dropdown-item" href="/dashboard/products">All Prodcuts</a>
                                         <a class="dropdown-item" href="/products/create">Add Products</a>
                                         @if(Auth::user()->slug == "supplier-user")
-                                            <a class="dropdown-item" href="{{ route('lead.Supplier') }}">Lead</a>
+                                            <a class="dropdown-item" href="{{ url('checkout') }}">CheckOut</a>
                                         @endif
-                                        @if(Auth::user()->slug == "supplier-user")
-                                            <a class="dropdown-item" href="SelectBrands">Select Brands</a>
-                                        @endif
+
 
                                         <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
@@ -135,6 +133,9 @@
                     @endif
                     @if(Auth::user()->slug == "supplier-user")
                         <a class="dropdown-item" href="{{ url('/SelectedBrands') }}"> View Selected Brands</a>
+                    @endif
+                    @if(Auth::user()->slug == "supplier-user")
+                        <a class="dropdown-item" href="{{ url('Supplier/subscription') }}">Subscription</a>
                     @endif
                     <a href="{{ url('user/'.Auth::user()->id.'/edit') }}">Edit Profile</a>
                 </div>

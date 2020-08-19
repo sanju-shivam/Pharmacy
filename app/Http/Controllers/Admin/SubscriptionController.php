@@ -7,7 +7,8 @@ use Illuminate\Http\Request;
 use App\Social;
 use App\Subscription;
 use Illuminate\Support\Facades\Hash;
-
+use Auth;
+use App\BookSubcription;
 class SubscriptionController extends Controller
 {
     /**
@@ -118,5 +119,31 @@ class SubscriptionController extends Controller
         if($obj){
             return redirect('admin\subscription')->with('message','Subscription Deleted Succssfully');
         }
+    }
+
+    public function supplier_subscription(){
+        $subcriptions = Subscription::all();
+        $user_id = Auth::user()->id;
+            return view('dashboard.supplier.book_subscription',compact('subcriptions','user_id'));
+    }
+
+    public function supplier_subscription_book($subcription_id)
+    {
+        $booking = BookSubcription::create([
+            'subcription_id' => $subcription_id,
+            'user_id' => Auth::user()->id
+        ]);
+        if($booking){
+            return redirect('Supplier/subscription')->with('message','Subscription Booked Successfully');
+        }
+    }
+
+    public function supplier_subscription_delete($id)
+    {
+        $booking_deleted = BookSubcription::where('subcription_id','=',$id)->where('user_id','=',Auth::user()->id)->delete();
+        if($booking_deleted){
+            return redirect('Supplier/subscription')->with('messageDelete','Subscription Deleted Successfully');
+        }
+
     }
 }

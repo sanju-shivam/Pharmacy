@@ -11,6 +11,8 @@ use App\Page;
 use App\Social;
 use Session;
 use App\State;
+use Auth;
+use App\BookSubcription;
 
 class PagesController extends Controller
 {
@@ -112,4 +114,11 @@ class PagesController extends Controller
         return redirect('/logins');
     }
 
+
+    public function checkout()
+    {
+        $details = BookSubcription::where('user_id','=',Auth::user()->id)->get();
+      
+        return view('pages.checkout',compact('details'));
+    }
 }

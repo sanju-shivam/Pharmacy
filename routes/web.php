@@ -30,11 +30,12 @@ Route::post('lead/store','LeadsController@store')->name('lead.store');
 Route::resource('admin/subscription', 'Admin\SubscriptionController');
 Route::get('admin/subscription/edit/{id}','Admin\SubscriptionController@edit');
 Route::get('admin/subscription/delete/{id}','Admin\SubscriptionController@destroy');
-
+Route::get('checkout','PagesController@checkout');
 Route::post('admin/subscription/store','Admin\SubscriptionController@store');
 Route::post('admin/subscription/update/{id}','Admin\SubscriptionController@update');
-
-
+Route::get('Supplier/subscription','Admin\SubscriptionController@supplier_subscription');
+Route::get('Supplier/subscription/Book/{id}','Admin\SubscriptionController@supplier_subscription_book');
+Route::get('Supplier/subscription/Delete/{id}','Admin\SubscriptionController@supplier_subscription_delete');
 
 Route::get('/career', 'PagesController@career')->name('career');
 
