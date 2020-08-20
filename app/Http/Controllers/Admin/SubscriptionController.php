@@ -142,7 +142,11 @@ class SubscriptionController extends Controller
     {
         $booking_deleted = BookSubcription::where('subcription_id','=',$id)->where('user_id','=',Auth::user()->id)->delete();
         if($booking_deleted){
-            return redirect('Supplier/subscription')->with('messageDelete','Subscription Deleted Successfully');
+            $notification = array(
+                'message' => 'Post created successfully!',
+                'alert-type' => 'success'
+            );
+            return redirect('Supplier/subscription')->with($notification);
         }
 
     }

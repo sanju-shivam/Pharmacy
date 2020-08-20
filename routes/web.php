@@ -12,10 +12,13 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+ Route::get('product', 'PaymentController@razorpayProduct'); //NEW
+  Route::get('paysuccess', 'PaymentController@razorPaySuccess')->name('autocomplete.fetch'); //NEW
+ 
+  Route::get('razorthankyou', 'PaymentController@RazorThankYou'); //NEW
 
 Route::get('/', 'PagesController@index');
-Route::get('state/{name}','PagesController@state')->name('satate.statename');
+Route::get('state/{name}','PagesController@state')->name('satate.statename'); //NEW
 Route::get('/states', 'PagesController@states')->name('states');// NEW
 Route::get('/SelectBrands','BrandsController@brands_add_view_supplier');// NEW
 Route::post('/save_brands','BrandsController@brands_store_supplier')->name('savebrands');// NEW
@@ -25,17 +28,19 @@ Route::post('filter/','ProductsController@filter')->name('filter'); //NEW
 Route::get('/lead-supplier','LeadsController@lead_supplier')->name('lead.Supplier');//NEW
 Route::get('user/{id}/edit','Admin\AdminPagesController@edit_admin')->name('user.id.edit');// NEW
 Route::post('admin/{id}','Admin\AdminPagesController@update_admin')->name('admin.id');// NEW
-Route::get('/categories', 'PagesController@category')->name('categories');
-Route::post('lead/store','LeadsController@store')->name('lead.store');
-Route::resource('admin/subscription', 'Admin\SubscriptionController');
-Route::get('admin/subscription/edit/{id}','Admin\SubscriptionController@edit');
-Route::get('admin/subscription/delete/{id}','Admin\SubscriptionController@destroy');
-Route::get('checkout','PagesController@checkout');
-Route::post('admin/subscription/store','Admin\SubscriptionController@store');
-Route::post('admin/subscription/update/{id}','Admin\SubscriptionController@update');
-Route::get('Supplier/subscription','Admin\SubscriptionController@supplier_subscription');
-Route::get('Supplier/subscription/Book/{id}','Admin\SubscriptionController@supplier_subscription_book');
-Route::get('Supplier/subscription/Delete/{id}','Admin\SubscriptionController@supplier_subscription_delete');
+Route::get('/categories', 'PagesController@category')->name('categories');//NEW
+Route::post('lead/store','LeadsController@store')->name('lead.store');//NEW
+Route::resource('admin/subscription', 'Admin\SubscriptionController');//NEW
+Route::get('admin/subscription/edit/{id}','Admin\SubscriptionController@edit');//NEW
+Route::get('admin/subscription/delete/{id}','Admin\SubscriptionController@destroy');//NEW
+Route::get('checkout','PagesController@checkout');//NEW
+Route::post('admin/subscription/store','Admin\SubscriptionController@store');//NEW
+Route::post('admin/subscription/update/{id}','Admin\SubscriptionController@update');//NEW
+Route::get('Supplier/subscription','Admin\SubscriptionController@supplier_subscription');//NEW
+Route::get('Supplier/subscription/Book/{id}','Admin\SubscriptionController@supplier_subscription_book');//NEW
+Route::get('Supplier/subscription/Delete/{id}','Admin\SubscriptionController@supplier_subscription_delete');//NEW
+
+
 
 Route::get('/career', 'PagesController@career')->name('career');
 

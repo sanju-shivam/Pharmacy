@@ -28,11 +28,11 @@
                  <a href="{{url('admin\subscription\create')}}" class="btn btn-primary "><i class="fa fa-plus"></i> &nbsp;Create</a>
                   <br><br>
 
-                  @if(session()->has('message'))
-                    <div class="alert alert-success">
-                       {{ session()->get('message') }} 
-                    </div>
-                @endif
+                    <script type="text/javascript">
+                    @if(session()->has('message'))
+                           toastr.success("{{ session()->get('message') }}");
+                    @endif
+                    </script>
                 <table class="table table-striped">
                     <tr>
                         <th>Id</th>

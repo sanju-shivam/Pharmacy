@@ -25,16 +25,12 @@
     <div id="main">
         <div class="row">
             <div class="col-md-12 m-auto">
-                @if(session()->has('message'))
-                    <div class="alert alert-success">
-                       {{ session()->get('message') }} 
-                    </div>
-                @endif
-                @if(session()->has('messageDelete'))
-                    <div class="alert alert-danger">
-                       {{ session()->get('messageDelete') }} 
-                    </div>
-                @endif
+                
+                <script type="text/javascript">
+                    @if(session()->has('message'))
+                           toastr.success("{{ session()->get('message') }}");
+                    @endif
+                </script>
                 <table class="table table-striped">
                     <tr>
                         <th>Id</th>
