@@ -11,6 +11,8 @@ use App\LeadStatus;
 use App\BrandUser;
 use Auth;
 use Illuminate\Support\Facades\Mail;
+use App\Mail\NewLeadReceived;
+
 class LeadsController extends Controller
 {
 
@@ -73,22 +75,22 @@ class LeadsController extends Controller
             'requirement' => ''
         ]);
 
-        $lead = new Lead;
-        $lead->name = $request->input('name');
-        $lead->email = $request->input('email');
-        $lead->phone = $request->input('phone');
-        $lead->requirement = $request->input('requirement');
-        if($lead->save()) {
+        $lead = Lead::create([
+            'name' => $request->input('name'),
+            'email' => $request->input('email'),
+            'phone' => $request->input('phone'),
+            'requirement' => $request->input('requirement'),
+        ]);
 
+        // $lead = new Lead;
+        // $lead->name = $request->input('name');
+        // $lead->email = $request->input('email');
+        // $lead->phone = $request->input('phone');
+        // $lead->requirement = $request->input('requirement');
+
+        session()->flash('success',' Request Submitted And Mail Sent');
             
-            $request->session()->flash('success',' Request Submitted And Mail Sent');
-        }else{
-            $request->session()->flash('error', 'There was an error sending request. Please try again');
-        }
-
-        // $status = Status::select('id')->where('name', 'New')->first();
-
-        // $lead->statuses()->attach($status);
+        Mail::to('admin@admin.com')->send(new NewLeadReceived($lead));
 
         return redirect()->back();
 

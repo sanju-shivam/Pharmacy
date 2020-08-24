@@ -12,10 +12,13 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
- Route::get('product', 'PaymentController@razorpayProduct'); //NEW
-  Route::get('paysuccess', 'PaymentController@razorPaySuccess')->name('autocomplete.fetch'); //NEW
+Route::get('product', 'PaymentController@razorpayProduct'); //NEW
+
+Route::get('paysuccess', 'PaymentController@razorPaySuccess')->name('autocomplete.fetch'); //NEW
  
-  Route::get('razorthankyou', 'PaymentController@RazorThankYou'); //NEW
+Route::get('razorthankyou', 'PaymentController@RazorThankYou'); //NEW
+
+Route::get('/form/email', 'PagesController@leadStored')->name('lead.email');
 
 Route::get('/', 'PagesController@index');
 Route::get('state/{name}','PagesController@state')->name('satate.statename'); //NEW
