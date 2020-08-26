@@ -81,7 +81,7 @@
                         <br>
 
                         <div class="my-2 d-flex justify-content-between">
-                            <a href="{{  }}" class="btn btn-outline-info"><i class="fa fa-facebook mr-2"></i>Login with Facebook</a>
+                            <a href="{{ url('logins/facebook') }}" class="btn btn-outline-info"><i class="fa fa-facebook mr-2"></i>Login with Facebook</a>
 
                             {{-- <div class="g-signin2" data-onsuccess="onSignIn"></div> --}}
                             <a href="{{ route('google.login')}}" class="btn btn-outline-danger"><i class="fa fa-google mr-2 text-dark"></i>Login with Google</a>

@@ -9,6 +9,8 @@ use App\Role;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\WelcomeMail;
 
 class RegisterController extends Controller
 {
@@ -73,6 +75,13 @@ class RegisterController extends Controller
             'phone' => $data['phone'],
             'slug' => $data['slug'],
         ]);
+
+        $lead =array(
+            'name' => $data['name'],
+            'email' => $data['email'],
+        );
+
+        Mail::to($user->email)->send(new WelcomeMail($lead));
 
         $role = Role::select('id')->where('name', 'supplier')->first();
 
