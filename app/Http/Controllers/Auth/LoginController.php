@@ -54,6 +54,27 @@ class LoginController extends Controller
         return $this->redirectTo;
     }
 
+
+    public function redirectToProvider()
+    {
+        return Socialite::driver('facebook')->redirect();
+    }
+
+    /**
+     * Obtain the user information from GitHub.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function handleProviderCallback()
+    {
+        $user = Socialite::driver('facebook')->user();
+
+        $token = $user->token;
+        $user->getId();
+        $user->getName();
+        $user->getEmail();
+    }
+
     /**
      * Redirect the user to the Facebook authentication page.
      *
@@ -73,26 +94,33 @@ class LoginController extends Controller
     {
 
         $facebookUser = Socialite::driver('facebook')->user();
-
         // dd($facebookUser);
 
-        $user = User::where('provider_id', $facebookUser->getId())->first();
+        $user = User::where('email', $facebookUser->getEmail())->first();
 
-        if(!$user){
+        if($user){
+            Auth::login($user, true);
+
+            return redirect('/');
+        }else{
             // Register the user
              $user = User::create(
                ['name' => $facebookUser->getName(), 
                 'email' => $facebookUser->getEmail(),
                 'provider_id' => $facebookUser->getId(),
             ]);
+            Auth::login($user, true);
+            return redirect('/');
         }
 
         // login the user
-        Auth::login($user, true);
+        // Auth::login($user, true);
 
-        return redirect($this->redirectTo);
+        return redirect('/');
 
     }
+
+    
 
     public function googleRedirect()
     {

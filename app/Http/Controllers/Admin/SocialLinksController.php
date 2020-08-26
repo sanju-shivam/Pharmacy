@@ -6,6 +6,9 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Social;
 use Illuminate\Support\Facades\Validator;
+use Socialite;
+use Auth;
+use App\User;
 
 class socialLinksController extends Controller
 {

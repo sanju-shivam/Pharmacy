@@ -28,7 +28,7 @@ class PagesController extends Controller
         // Blogs
         $blogs = Blog::orderBy('id', 'desc')->paginate(3);
         // Social
-        $socials = Social::select('icon','link')->get();
+        $socials = Social::all();
         // State
         $states = State::all();
         return view('pages.index')->with([
@@ -42,12 +42,12 @@ class PagesController extends Controller
     }
 
     public function about() {
-        $socials = Social::select('icon','link')->get();
+        $socials = Social::all();
         return view('pages.about',compact('socials'));
     }
 
     public function career() {
-        $socials = Social::select('icon','link')->get();
+        $socials = Social::all();
         return view('pages.career',compact('socials'));
     }
 
@@ -62,17 +62,17 @@ class PagesController extends Controller
     }
 
     public function faq() {
-        $socials = Social::select('icon','link')->get();
+        $socials = Social::all();
         return view('pages.faq',compact('socials'));
     }
 
     public function login() {
-        $socials = Social::select('icon','link')->get();
+        $socials = Social::all();
         return view('auth.login',compact('socials'));
     }
 
     public function category() {
-        $socials = Social::select('icon','link')->get();
+        $socials = Social::all();
         $categories = Category::all();
         return view('pages.categories',compact('categories','socials'));
     }
@@ -80,13 +80,13 @@ class PagesController extends Controller
 
     public function states()
     {
-        $socials = Social::select('icon','link')->get();
+        $socials = Social::all();
         return view('pages.states',compact('socials'));
     }
 
     public function state($name)
     {
-        $socials = Social::select('icon','link')->get();
+        $socials = Social::all();
         $categories = Category::all();
         $products = Product::select('id','image','title','text','slug','location')->where('location','=',$name)->paginate(10);
         return view('pages.state_wise_product',compact('products','categories','name','socials'));
