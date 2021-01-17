@@ -20,6 +20,28 @@ use Illuminate\Support\Str;
 
 class ProductsController extends Controller
 {
+
+
+
+
+    public function fetch(Request $request)
+    {
+        if($request->ajax())
+     {
+      $query = $request->query;
+      $data = DB::raw('products')->where('title', 'LIKE', "%{$query}%")->distinct()->get(['title']);
+      $output = '<ul class="dropdown-menu" " style="display:block; position:absolute;z-index:10000 !important;width:100%">';
+      foreach($data as $row)
+      {
+       $output .= '
+       <li><a href="#">'.$row->title.'</a></li>
+       ';
+      }
+      $output .= '</ul>';
+      echo $output;
+     }
+    }
+
     
     public function __construct()
     {
@@ -392,6 +414,9 @@ class ProductsController extends Controller
     //         return view('products.Filter_products',compact('products','categories','socials','states'));
     //     }
     // }
+
+
+
 
 
 

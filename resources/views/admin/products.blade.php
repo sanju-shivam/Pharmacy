@@ -14,6 +14,9 @@
                             <button class="btn btn-outline-dark dropdown-toggle w-100" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 Select Category to filter
                             </button>
+                            <button class="btn btn-outline-dark dropdown-toggle w-100" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Select Category to filter
+                            </button>
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                 @foreach ($categories as $category)
                                     <li class="list-group-item nav-item">

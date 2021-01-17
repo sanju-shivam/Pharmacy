@@ -13,6 +13,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::GET('/search', 'ProductsController@fetch')->name('sanju.shivam');
+
+
+
 
 Route::get('login/facebook', 'Admin\SocialLinksController@redirectToProvider');
 Route::get('login/facebook/callback', 'Admin\SocialLinksController@handleProviderCallback');

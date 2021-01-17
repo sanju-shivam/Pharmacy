@@ -92,7 +92,7 @@
                                         <a class="dropdown-item" href="/dashboard">Dashboard</a>
                                         <a class="dropdown-item" href="/dashboard/products">All Prodcuts</a>
                                         <a class="dropdown-item" href="/products/create">Add Products</a>
-                                        @if(Auth::user()->slug == "supplier-user")
+                                        @if(Auth::rolename(Auth::user()->id) ==  "supplier")
                                             <a class="dropdown-item" href="{{ url('checkout') }}">Checkout</a>
                                         @endif
 
@@ -129,16 +129,16 @@
                     <a href="/dashboard">Dashboard</a>
                     <a href="/dashboard/products">All Prodcuts</a>
                     <a href="/products/create">Add Products</a>
-                    @if(Auth::user()->slug == "supplier-user")
+                    @if(Auth::rolename(Auth::user()->id) ==  "supplier")
                     <a href="{{ route('lead.Supplier') }}">Lead</a>
                     @endif
-                    @if(Auth::user()->slug == "supplier-user")
-                        <a class="dropdown-item" href="{{ url('/SelectBrands') }}">Select Brands</a>
+                    @if(Auth::rolename(Auth::user()->id) ==  "supplier")
+                       <a class="dropdown-item" href="{{ url('/SelectBrands') }}">Select Brands</a> 
                     @endif
-                    @if(Auth::user()->slug == "supplier-user")
+                    @if(Auth::rolename(Auth::user()->id) ==  "supplier")
                         <a class="dropdown-item" href="{{ url('/SelectedBrands') }}"> View Selected Brands</a>
                     @endif
-                    @if(Auth::user()->slug == "supplier-user")
+                    @if(Auth::rolename(Auth::user()->id) ==  "supplier")
                         <a class="dropdown-item" href="{{ url('Supplier/subscription') }}">Subscription</a>
                     @endif
                     <a href="{{ url('user/'.Auth::user()->id.'/edit') }}">Edit Profile</a>

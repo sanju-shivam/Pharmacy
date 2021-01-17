@@ -39,9 +39,12 @@
 
 
                                                         @endforeach
+                                                        @if(!empty($product_ids))
                                                         <?php  $a = implode(',', $product_ids);
                                                         ?>
+                                                        
                                                         <p  style="display: none;" id="ids" >{{ $a }}</p>
+                                                        @endif
                                                     </tbody>
                                                 </table>  
                                             </div>

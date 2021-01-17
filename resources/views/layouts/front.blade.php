@@ -218,7 +218,55 @@
 
 
 
+<script>
+$(document).ready(function(){
+
+ $('#productname').keyup(function(){ 
+        var query = $(this).val();
+        
+        if(query != '')
+        {
+         var _token = $('input[name="_token"]').val();
+         //alert(_token);
+        console.log(query);
+
+         $.ajax({
+          url: "{{URL::to('search')}}",
+          method:"GET",
+          data:{query:query},
+          success:function(data){
+            console.log(data);
+
+            $('#productlist').fadeIn();  
+            $('#productlist').html(data);
+          }
+         });
+        }
+    });
+});
+// $("#productname").click(function(){
+//   $(".a").removeClass("visible");
+// });
+$("body").click(function() {
+   if ($(".productlist").is(":visible")) {
+       $(".productlist").hide();
+   }
+});
+
+ $(document).on('click', 'li', function(){  
+        $('#productname').val($(this).text());  
+        $('#productlist').fadeOut();  
+    });  
+// window.onclick = function(event) {
+//   if (event.target == productlist) {
+//     productlist.style.display = "none";
+//   }
+// }
+</script>
    
+
+
+
 </body>
 
 </html>

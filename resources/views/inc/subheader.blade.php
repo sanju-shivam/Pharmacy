@@ -7,9 +7,11 @@
         <div class="col-md-6">
             <form class="form-inline pt-2" action="{{ route('products.search') }}" method="GET">
                 <div class="input-group w-100">
-
-                    <input type="text" name="query" class="form-control @error('text') is-invalid @enderror" autocomplete="off" id="query" placeholder="Search Molecule or Company" value="{{ request()->input('query') }}" required>
-                    
+                    <div class="form-group">
+                        <input type="text" name="title"class="form-control " autocomplete="off" placeholder="Search Product" id="productname" >
+                        <div class="a productlist" style="z-index: 1000000 !important;visibility: visible;" id="productlist"></div>
+                        {{ csrf_field() }}
+                    </div>
                     <div class="input-group-append">
 
                         <button class="btn btn-outline-success text-white" type="submit">
@@ -20,6 +22,7 @@
                 </div>
                 
             </form>
+
         </div>
         <div class="col-md-3 justify-content-center social-links">
             <ul class="nav d-flex justify-content-center">
